@@ -1,4 +1,4 @@
-update=Do 04 Jan 2018 00:24:19 CET
+update=Do 04 Jan 2018 00:26:59 CET
 version=1
 last_client=kicad
 [pcbnew]
@@ -61,3 +61,5 @@ LibName29=opto
 LibName30=atmel
 LibName31=contrib
 LibName32=valves
+LibName33=kicad-library/library/AMS1117-3V3
+LibName34=kicad-library/library/esp-12e
