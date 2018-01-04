@@ -1,4 +1,4 @@
-update=Do 04 Jan 2018 02:09:33 CET
+update=Thu Jan  4 04:56:42 2018
 version=1
 last_client=kicad
 [pcbnew]
@@ -66,10 +66,10 @@ LibName34=kicad-library/library/esp-12e
 [schematic_editor]
 version=1
 PageLayoutDescrFile=
-PlotDirectoryName=../../../../
+PlotDirectoryName=../export/
 SubpartIdSeparator=0
 SubpartFirstId=65
-NetFmtName=
+NetFmtName=Pcbnew
 SpiceForceRefPrefix=0
 SpiceUseNetNumbers=0
 LabSize=55
