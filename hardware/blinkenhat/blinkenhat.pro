@@ -1,4 +1,4 @@
-update=Do 04 Jan 2018 00:26:59 CET
+update=Do 04 Jan 2018 02:09:33 CET
 version=1
 last_client=kicad
 [pcbnew]
@@ -63,3 +63,13 @@ LibName31=contrib
 LibName32=valves
 LibName33=kicad-library/library/AMS1117-3V3
 LibName34=kicad-library/library/esp-12e
+[schematic_editor]
+version=1
+PageLayoutDescrFile=
+PlotDirectoryName=../../../../
+SubpartIdSeparator=0
+SubpartFirstId=65
+NetFmtName=
+SpiceForceRefPrefix=0
+SpiceUseNetNumbers=0
+LabSize=55
