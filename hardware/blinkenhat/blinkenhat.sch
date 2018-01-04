@@ -79,12 +79,12 @@ $EndComp
 $Comp
 L USB_OTG J5
 U 1 1 5A4D6874
-P 4250 4100
-F 0 "J5" H 4050 4550 50  0000 L CNN
-F 1 "USB_POWER" H 4050 4450 50  0000 L CNN
-F 2 "Connectors:USB_Micro-B_10103594-0001LF" H 4400 4050 50  0001 C CNN
-F 3 "" H 4400 4050 50  0001 C CNN
-	1    4250 4100
+P 4500 4050
+F 0 "J5" H 4300 4500 50  0000 L CNN
+F 1 "USB_POWER" H 4300 4400 50  0000 L CNN
+F 2 "Connectors:USB_Micro-B_10103594-0001LF" H 4650 4000 50  0001 C CNN
+F 3 "" H 4650 4000 50  0001 C CNN
+	1    4500 4050
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -153,9 +153,9 @@ F 3 "" H 9900 4550 50  0001 C CNN
 	1    9900 4550
 	1    0    0    -1  
 $EndComp
-NoConn ~ 4550 4100
-NoConn ~ 4550 4200
-NoConn ~ 4550 4300
+NoConn ~ 4800 4050
+NoConn ~ 4800 4150
+NoConn ~ 4800 4250
 $Comp
 L C C4
 U 1 1 5A4D72CB
@@ -214,23 +214,23 @@ $EndComp
 $Comp
 L +5V #PWR04
 U 1 1 5A4D82F4
-P 4750 3700
-F 0 "#PWR04" H 4750 3550 50  0001 C CNN
-F 1 "+5V" H 4750 3840 50  0000 C CNN
-F 2 "" H 4750 3700 50  0001 C CNN
-F 3 "" H 4750 3700 50  0001 C CNN
-	1    4750 3700
+P 5000 3650
+F 0 "#PWR04" H 5000 3500 50  0001 C CNN
+F 1 "+5V" H 5000 3790 50  0000 C CNN
+F 2 "" H 5000 3650 50  0001 C CNN
+F 3 "" H 5000 3650 50  0001 C CNN
+	1    5000 3650
 	1    0    0    -1  
 $EndComp
 $Comp
 L GND #PWR05
 U 1 1 5A4D832A
-P 4250 4700
-F 0 "#PWR05" H 4250 4450 50  0001 C CNN
-F 1 "GND" H 4250 4550 50  0000 C CNN
-F 2 "" H 4250 4700 50  0001 C CNN
-F 3 "" H 4250 4700 50  0001 C CNN
-	1    4250 4700
+P 4500 4650
+F 0 "#PWR05" H 4500 4400 50  0001 C CNN
+F 1 "GND" H 4500 4500 50  0000 C CNN
+F 2 "" H 4500 4650 50  0001 C CNN
+F 3 "" H 4500 4650 50  0001 C CNN
+	1    4500 4650
 	1    0    0    -1  
 $EndComp
 Text GLabel 6350 5350 0    55   Input ~ 0
@@ -323,10 +323,6 @@ F 3 "" H 9350 3150 50  0001 C CNN
 	1    9350 3150
 	1    0    0    -1  
 $EndComp
-NoConn ~ 8000 3400
-NoConn ~ 8100 3400
-NoConn ~ 8400 3400
-NoConn ~ 8500 3400
 Text GLabel 6650 4150 0    60   Input ~ 0
 RESET
 $Comp
@@ -371,16 +367,16 @@ Wire Wire Line
 Connection ~ 9700 5500
 Connection ~ 9900 4850
 Wire Wire Line
-	4250 4500 4250 4700
+	4500 4450 4500 4650
 Wire Wire Line
-	4250 4600 4150 4600
+	4500 4550 4400 4550
 Wire Wire Line
-	4150 4600 4150 4500
-Connection ~ 4250 4600
+	4400 4550 4400 4450
+Connection ~ 4500 4550
 Wire Wire Line
-	4550 3900 4750 3900
+	4800 3850 5000 3850
 Wire Wire Line
-	4750 3900 4750 3700
+	5000 3850 5000 3650
 Wire Wire Line
 	6200 5650 6700 5650
 Wire Wire Line
@@ -406,7 +402,7 @@ Wire Wire Line
 Wire Wire Line
 	9200 2900 9200 3600
 Wire Wire Line
-	9350 3300 9350 3500
+	9350 3500 9350 3300
 Connection ~ 9500 2700
 Connection ~ 9300 2600
 Wire Wire Line
@@ -445,7 +441,7 @@ Wire Wire Line
 Wire Wire Line
 	6700 2800 7350 2800
 Wire Wire Line
-	7350 2900 6950 2900
+	6950 2900 7350 2900
 Wire Wire Line
 	6950 2900 6950 3100
 Wire Wire Line
@@ -458,13 +454,8 @@ Connection ~ 7200 1550
 Wire Wire Line
 	9500 1550 9500 1600
 Connection ~ 9300 1550
-NoConn ~ 8200 3400
-NoConn ~ 8300 3400
-NoConn ~ 9150 2400
-NoConn ~ 9150 2500
-NoConn ~ 7350 2300
 Wire Wire Line
-	9350 3500 7200 3500
+	7200 3500 9350 3500
 Wire Wire Line
 	7200 3500 7200 3250
 Wire Wire Line
@@ -515,7 +506,7 @@ Wire Wire Line
 Wire Wire Line
 	2000 6150 2650 6150
 Wire Wire Line
-	2000 6700 2650 6700
+	2650 6700 2000 6700
 Wire Wire Line
 	2000 6350 2050 6350
 Wire Wire Line
@@ -857,4 +848,102 @@ F 3 "" H 6900 5450 50  0001 C CNN
 	1    6900 5450
 	1    0    0    -1  
 $EndComp
+$Comp
+L Conn_02x05_Odd_Even J6
+U 1 1 5A4EBCE1
+P 4200 6000
+F 0 "J6" H 4250 6300 50  0000 C CNN
+F 1 "GPIO" H 4250 5700 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_2x05_Pitch1.27mm" H 4200 6000 50  0001 C CNN
+F 3 "" H 4200 6000 50  0001 C CNN
+	1    4200 6000
+	1    0    0    -1  
+$EndComp
+Text GLabel 6700 2300 0    55   Input ~ 0
+ADC
+Text GLabel 9750 2400 2    55   Input ~ 0
+GPIO5
+Text GLabel 9750 2500 2    55   Input ~ 0
+GPIO4
+Text GLabel 8200 3600 3    55   Input ~ 0
+GPIO9
+Text GLabel 8300 3600 3    55   Input ~ 0
+GPIO10
+Text GLabel 8400 3600 3    55   Input ~ 0
+MOSI
+Text GLabel 8500 3600 3    55   Input ~ 0
+SCLK
+Text GLabel 8100 3600 3    55   Input ~ 0
+MISO
+Text GLabel 8000 3600 3    55   Input ~ 0
+CSO
+Wire Wire Line
+	9750 2400 9150 2400
+Wire Wire Line
+	9150 2500 9750 2500
+Wire Wire Line
+	7350 2300 6700 2300
+Wire Wire Line
+	8000 3400 8000 3600
+Wire Wire Line
+	8100 3400 8100 3600
+Wire Wire Line
+	8200 3400 8200 3600
+Wire Wire Line
+	8300 3400 8300 3600
+Wire Wire Line
+	8400 3400 8400 3600
+Wire Wire Line
+	8500 3400 8500 3600
+Text GLabel 3850 5900 0    55   Input ~ 0
+ADC
+Text GLabel 3850 6100 0    55   Input ~ 0
+GPIO5
+Text GLabel 3850 6000 0    55   Input ~ 0
+GPIO4
+Text GLabel 3850 6200 0    55   Input ~ 0
+CSO
+Text GLabel 4650 5800 2    55   Input ~ 0
+MISO
+Text GLabel 4650 5900 2    55   Input ~ 0
+GPIO9
+Text GLabel 4650 6000 2    55   Input ~ 0
+GPIO10
+Text GLabel 4650 6100 2    55   Input ~ 0
+MOSI
+Text GLabel 4650 6200 2    55   Input ~ 0
+SCLK
+Wire Wire Line
+	3850 5900 4000 5900
+Wire Wire Line
+	4000 6000 3850 6000
+Wire Wire Line
+	3850 6100 4000 6100
+Wire Wire Line
+	4000 6200 3850 6200
+Wire Wire Line
+	4650 6200 4500 6200
+Wire Wire Line
+	4650 6100 4500 6100
+Wire Wire Line
+	4650 6000 4500 6000
+Wire Wire Line
+	4650 5900 4500 5900
+Wire Wire Line
+	4650 5800 4500 5800
+$Comp
+L +3V3 #PWR023
+U 1 1 5A4ED188
+P 3900 5750
+F 0 "#PWR023" H 3900 5600 50  0001 C CNN
+F 1 "+3V3" H 3900 5890 50  0000 C CNN
+F 2 "" H 3900 5750 50  0001 C CNN
+F 3 "" H 3900 5750 50  0001 C CNN
+	1    3900 5750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3900 5750 3900 5800
+Wire Wire Line
+	3900 5800 4000 5800
 $EndSCHEMATC
