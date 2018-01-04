@@ -1,0 +1,6 @@
+(fp_lib_table
+  (lib (name ESP8266)(type KiCad)(uri ${KIPRJMOD}/../libs/kicad-library/modules/ESP8266.pretty)(options "")(descr ""))
+  (lib (name switches)(type KiCad)(uri ${KIPRJMOD}/../libs/kicad-library/modules/switches.pretty)(options "")(descr ""))
+  (lib (name smt)(type KiCad)(uri ${KIPRJMOD}/../libs/kicad-library/modules/smt.pretty)(options KiCad)(descr ""))
+  (lib (name DO214)(type KiCad)(uri ${KIPRJMOD}/../libs/custom/modules/DO214.pretty)(options KiCad)(descr ""))
+)
