@@ -616,13 +616,13 @@ $EndComp
 $Comp
 L Conn_02x05_Odd_Even J6
 U 1 1 5A4EBCE1
-P 4200 6000
-F 0 "J6" H 4250 6300 50  0000 C CNN
-F 1 "GPIO" H 4250 5700 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_2x05_Pitch1.27mm" H 4200 6000 50  0001 C CNN
-F 3 "" H 4200 6000 50  0001 C CNN
-	1    4200 6000
-	1    0    0    -1  
+P 4300 6000
+F 0 "J6" H 4350 6300 50  0000 C CNN
+F 1 "GPIO" H 4350 5700 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_2x05_Pitch1.27mm" H 4300 6000 50  0001 C CNN
+F 3 "" H 4300 6000 50  0001 C CNN
+	1    4300 6000
+	-1   0    0    1   
 $EndComp
 Text GLabel 6700 2300 0    55   Input ~ 0
 ADC
@@ -660,17 +660,6 @@ Text GLabel 4650 6100 2    55   Input ~ 0
 MOSI
 Text GLabel 4650 6200 2    55   Input ~ 0
 SCLK
-$Comp
-L +3V3 #PWR023
-U 1 1 5A4ED188
-P 3900 5750
-F 0 "#PWR023" H 3900 5600 50  0001 C CNN
-F 1 "+3V3" H 3900 5890 50  0000 C CNN
-F 2 "" H 3900 5750 50  0001 C CNN
-F 3 "" H 3900 5750 50  0001 C CNN
-	1    3900 5750
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	9300 5150 9300 5500
 Wire Wire Line
@@ -922,10 +911,6 @@ Wire Wire Line
 Wire Wire Line
 	4650 5800 4500 5800
 Wire Wire Line
-	3900 5750 3900 5800
-Wire Wire Line
-	3900 5800 4000 5800
-Wire Wire Line
 	6200 5650 6200 5750
 Wire Wire Line
 	6700 5350 6350 5350
@@ -946,4 +931,19 @@ F 3 "" H 6900 5550 50  0001 C CNN
 	1    6900 5550
 	1    0    0    1   
 $EndComp
+$Comp
+L +3V3 #PWR023
+U 1 1 5A4ED188
+P 3900 5750
+F 0 "#PWR023" H 3900 5600 50  0001 C CNN
+F 1 "+3V3" H 3900 5890 50  0000 C CNN
+F 2 "" H 3900 5750 50  0001 C CNN
+F 3 "" H 3900 5750 50  0001 C CNN
+	1    3900 5750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3900 5750 3900 5800
+Wire Wire Line
+	3900 5800 4000 5800
 $EndSCHEMATC
