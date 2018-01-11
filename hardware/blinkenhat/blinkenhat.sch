@@ -668,8 +668,6 @@ Wire Wire Line
 	9900 4850 9600 4850
 Wire Wire Line
 	9600 4750 9700 4750
-Wire Wire Line
-	9700 4750 9700 5600
 Connection ~ 9300 5500
 Wire Wire Line
 	8800 5300 8800 5500
@@ -946,4 +944,9 @@ Wire Wire Line
 	3900 5750 3900 5800
 Wire Wire Line
 	3900 5800 4000 5800
+Wire Wire Line
+	9700 5500 9700 5600
+Wire Wire Line
+	9700 4750 9700 4850
+Connection ~ 9700 4850
 $EndSCHEMATC
