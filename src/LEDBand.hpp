@@ -48,6 +48,8 @@ LEDBand<numLEDS> :: LEDBand(const uint8_t brightness, const uint8_t framerate)
 
   // We do not use dithering for now.
   FastLED.setDither(0);
+
+  last_update = millis();
 }
 
 template<uint8_t numLEDS>
@@ -66,7 +68,6 @@ void LEDBand<numLEDS> :: setFramerate(const uint8_t f)
 {
   framerate = f;
   wait=1000/f;
-  last_update = millis();
 }
 
 template<uint8_t numLEDS>
