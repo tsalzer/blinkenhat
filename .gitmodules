@@ -1,3 +1,6 @@
 [submodule "hardware/libs/kicad-library"]
 	path = hardware/libs/kicad-library
 	url = https://github.com/automote/kicad-library.git
+[submodule "lib/FastLED"]
+	path = lib/FastLED
+	url = https://github.com/FastLED/FastLED.git
