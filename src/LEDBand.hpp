@@ -5,10 +5,14 @@
 
 #include <FastLED.h>
 
-template<uint8_t numLEDS> class LEDBand
+const uint8_t maxLEDs = 100;
+
+class LEDBand
 {
 public:
-  LEDBand(const uint8_t brightness, const uint8_t framerate = 40);
+  LEDBand(const int numLEDs, const uint8_t brightness, const uint8_t framerate);
+
+  LEDBand(const int numLEDs, const uint8_t brightness = 127);
 
   // default brightness 127; default framerate 40
   LEDBand();
@@ -21,67 +25,16 @@ public:
   void setFramerate(const uint8_t f);
   uint8_t getFramerate(void) const { return framerate; }
 
-  uint8_t getLEDNumber(void) const { return numLEDS; }
+  uint8_t getLEDCount(void) const { return numLEDs; }
 
-  CRGBArray<numLEDS> leds;
+  CRGBSet leds;
 
 private:
+  CRGB led_arr[maxLEDs];
+  int numLEDs;
+
   uint8_t brightness;
   uint8_t framerate;
   unsigned long wait;
   unsigned long last_update;
 };
-
-// -------------------------------------------------------
-template<uint8_t numLEDS>
-LEDBand<numLEDS> :: LEDBand(const uint8_t brightness, const uint8_t framerate)
-: brightness(brightness)
-{
-  setFramerate(framerate);
-
-  // tell FastLED about the LED strip configuration
-  FastLED.addLeds<WS2811_PORTA, 1>(leds, numLEDS)
-      .setCorrection(TypicalLEDStrip);
-
-  // set master brightness control
-  FastLED.setBrightness(brightness);
-
-  // We do not use dithering for now.
-  FastLED.setDither(0);
-
-  last_update = millis();
-}
-
-template<uint8_t numLEDS>
-LEDBand<numLEDS> :: LEDBand()
-: LEDBand(127) {}
-
-template<uint8_t numLEDS>
-void LEDBand<numLEDS> :: setBrightness(uint8_t br)
-{
-  brightness = br;
-  FastLED.setBrightness(brightness);
-}
-
-template<uint8_t numLEDS>
-void LEDBand<numLEDS> :: setFramerate(const uint8_t f)
-{
-  framerate = f;
-  wait=1000/f;
-}
-
-template<uint8_t numLEDS>
-void LEDBand<numLEDS> :: update()
-{
-  unsigned long elapsed = millis() - last_update;
-
-  if (elapsed < wait) {
-    delay(wait - elapsed);
-  } else {
-    // we can't guarantee the framerate
-  }
-  FastLED.show();
-
-   // take the new time after update to get rid of the processing time of show()
-  last_update = millis();
-}
