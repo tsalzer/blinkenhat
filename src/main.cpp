@@ -1,24 +1,41 @@
 #include <Arduino.h>
+
+#include "default.h"
+#include "Config.h"
 #include "LEDBand.hpp"
 #include "ERainbow.hpp"
 #include "EDot.hpp"
 
 #define LED_NUM 72
-#define BRIGHTNESS 25
-#define FRAMERATE 100
+#define BRIGHTNESS 56
+#define FRAMERATE 29
 
-LEDBand band (LED_NUM, BRIGHTNESS, FRAMERATE);
-EDot l(band);
-ERainbow r(band);
+
+Config cfg(DEFAULT_CONFIG);
+LEDBand *band;
+EDot *l;
+ERainbow *r;
+
+Effect* current_effect;
 
 void setup() {
-  Serial.begin(115200);
-  Serial.println("setup");
-  l.config(2, CRGB::Purple);
-  r.config(5);
+    Serial.begin(115200);
+    Serial.println("setup");
+    Serial.println(int(Channel::A));
+    band = new LEDBand(Channel::A, LED_NUM, FRAMERATE);
+    r = new ERainbow();
+    l = new EDot();
+
+    setupLEDs(BRIGHTNESS);
+
+    l->config(cfg.effectConfig(F("dot")));
+    r->config(cfg.effectConfig(F("rainbow")));
+
+    current_effect = l;
 }
 
 void loop() {
-  r.update();
-  //l.update();
+    unsigned long loop_time = millis();
+    current_effect->update(*band, loop_time);
+    band->update();
 }

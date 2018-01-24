@@ -5,36 +5,30 @@
 
 #include <FastLED.h>
 
-const uint8_t maxLEDs = 100;
+enum class Channel {
+  A = 0,
+  B = 1
+};
 
-class LEDBand
-{
+class LEDBand {
 public:
-  LEDBand(const int numLEDs, const uint8_t brightness, const uint8_t framerate);
-
-  LEDBand(const int numLEDs, const uint8_t brightness = 127);
-
-  // default brightness 127; default framerate 40
-  LEDBand();
+  LEDBand(const Channel channel, const uint8_t numLEDs, const uint8_t framerate);
 
   void update();
 
-  void setBrightness(const uint8_t br);
-  uint8_t getBrightness(void) const { return brightness; }
-
-  void setFramerate(const uint8_t f);
-  uint8_t getFramerate(void) const { return framerate; }
-
   uint8_t getLEDCount(void) const { return numLEDs; }
 
-  CRGBSet leds;
+  CRGBSet all_leds() { return leds; }
+  CRGBSet upper_leds() { return leds(0, (numLEDs / 2) - 1); }
+  CRGBSet lower_leds() { return CRGBSet(leds.leds, numLEDs - 1, (numLEDs / 2)); }
+
 
 private:
-  CRGB led_arr[maxLEDs];
-  int numLEDs;
+  CRGBSet leds;
+  uint8_t numLEDs;
 
-  uint8_t brightness;
-  uint8_t framerate;
-  unsigned long wait;
+  unsigned int wait;
   unsigned long last_update;
 };
+
+void setupLEDs(uint8_t brightness);

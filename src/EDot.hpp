@@ -1,19 +1,19 @@
 #pragma once
 #include "Effect.hpp"
 
-class EDot : public Effect
-{
+class EDot : public Effect {
 public:
-  EDot(LEDBand &band) : Effect(band), width(0), pos(0), color(CRGB::White) {}
+  EDot() : width(0), start_time(0), duration(0) {}
 
-  void update() override;
-  void config(int size) override;
-
-  // REMOVE ME
-  void config(int size, CRGB color);
+  void update(LEDBand &band, unsigned long time) override;
+  void restart() override {
+    start_time = millis();
+  }
+  void config(const ConfigWrapper &cfg) override;
 
 private:
   int width;
-  int pos;
-  CRGB color;
+  unsigned long start_time;
+  unsigned int duration;
+  unsigned int color_duration;
 };

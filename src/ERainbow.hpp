@@ -1,15 +1,23 @@
 #pragma once
 #include "Effect.hpp"
 
-class ERainbow : public Effect
-{
+class ERainbow : public Effect {
 public:
-  ERainbow(LEDBand &band) : hue(0), Effect(band), speed(1) {}
+  ERainbow() : speed(1) {}
 
-  void update() override;
-  void config(int i) override { speed = i;}
+  void update(LEDBand &band, unsigned long time) override;
+
+  void restart() {
+    start_time = millis();
+  }
+
+  void config(const ConfigWrapper &cfg) override {
+    speed = cfg.getOption(F("speed"), 10);
+    restart();
+  }
 
 private:
-  uint8_t hue;
   int speed;
+  unsigned long start_time;
+  unsigned int duration;
 };

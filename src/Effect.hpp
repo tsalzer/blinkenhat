@@ -1,14 +1,16 @@
 #pragma once
+
 #include "LEDBand.hpp"
+#include "Config.h"
 
-class Effect
-{
+class Effect {
 public:
-  Effect(LEDBand &band) : band(band) {}
+  Effect() = default;
 
-  virtual void update()  = 0;
-  virtual void config(int i)  = 0;
+  virtual void update(LEDBand &band, unsigned long time)  = 0;
+  virtual void restart() = 0;
+  virtual void config(const ConfigWrapper &)  = 0;
+  virtual ~Effect() = default;
 
 protected:
-  LEDBand &band;
 };
