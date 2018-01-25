@@ -22,6 +22,8 @@ public:
   CRGBSet upper_leds() { return leds(0, (numLEDs / 2) - 1); }
   CRGBSet lower_leds() { return CRGBSet(leds.leds, numLEDs - 1, (numLEDs / 2)); }
 
+  void blankLeds() { leds = CRGB::Black; }
+
 
 private:
   CRGBSet leds;

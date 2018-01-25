@@ -17,8 +17,6 @@ void EDot::update(LEDBand &band, unsigned long time) {
     int head = int(ceilf(center));
     int tail = int(floorf(center)) - width;
 
-    band.all_leds() = CRGB::Black;
-
     unsigned int pos;
     unsigned int off = 0;
     do {

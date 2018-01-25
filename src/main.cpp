@@ -36,6 +36,7 @@ void setup() {
 
 void loop() {
     unsigned long loop_time = millis();
+    band->blankLeds();
     current_effect->update(*band, loop_time);
     band->update();
 }
