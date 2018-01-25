@@ -6,7 +6,8 @@
           "typ": "rainbow",
           "cfg": {
             "speed": 5000,
-            "apply": 1
+            "apply": 1,
+            "coeff": 1.0
           }
         },
         {
@@ -17,7 +18,8 @@
             "len": 10,
             "hue": 0,
             "color_speed": 4000,
-            "apply": 2
+            "apply": 2,
+            "coeff": 1.0
           }
         }
       ]
