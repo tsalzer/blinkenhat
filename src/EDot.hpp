@@ -3,7 +3,7 @@
 
 class EDot : public Effect {
 public:
-  EDot() : width(0), start_time(0), duration(0) {}
+  EDot() : width(0), count(1), start_hue(0), start_time(0), duration(0) {}
 
   void update(LEDBand &band, unsigned long time) override;
   void restart() override {
@@ -12,7 +12,9 @@ public:
   void config(const ConfigWrapper &cfg) override;
 
 private:
-  int width;
+  unsigned int width;
+  unsigned int count;
+  uint8_t start_hue;
   unsigned long start_time;
   unsigned int duration;
   unsigned int color_duration;

@@ -1,12 +1,14 @@
 {
   "effects": {
     "rainbow": {
-      "speed": 10000
+      "speed": 5000
     },
     "dot": {
-      "speed": 10000,
-      "len": 5,
-      "color_speed": 15000
+      "count": 3,
+      "speed": 6000,
+      "len": 10,
+      "hue": 0,
+      "color_speed": 4000
     }
   }
 }
