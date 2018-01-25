@@ -1,7 +1,6 @@
 #include "ERainbow.h"
 
-void
-ERainbow::update(LEDBand &band, unsigned long time) {
+void ERainbow::update(LEDBand &band, unsigned long time) {
   uint8_t hue = uint8_t(255.0f * (float((time - start_time) % speed) / float(speed)));
 
   if (apply_to & 0x01)
