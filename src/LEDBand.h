@@ -4,11 +4,8 @@
 #define FASTLED_ALLOW_INTERRUPTS 0
 
 #include <FastLED.h>
+#include "Config.h"
 
-enum class Channel {
-  A = 0,
-  B = 1
-};
 
 class LEDBand {
 public:

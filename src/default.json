@@ -1,16 +1,26 @@
 {
-  "effects": {
-    "rainbow": {
-      "speed": 5000,
-      "apply": 1
-    },
-    "dot": {
-      "count": 3,
-      "speed": 6000,
-      "len": 10,
-      "hue": 0,
-      "color_speed": 4000,
-      "apply": 2
+  "channels": {
+    "A": {
+      "effects": [
+        {
+          "typ": "rainbow",
+          "cfg": {
+            "speed": 5000,
+            "apply": 1
+          }
+        },
+        {
+          "typ": "dot",
+          "cfg": {
+            "count": 3,
+            "speed": 6000,
+            "len": 10,
+            "hue": 0,
+            "color_speed": 4000,
+            "apply": 2
+          }
+        }
+      ]
     }
   }
 }

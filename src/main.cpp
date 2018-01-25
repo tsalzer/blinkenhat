@@ -3,40 +3,31 @@
 #include "default.h"
 #include "Config.h"
 #include "LEDBand.h"
-#include "ERainbow.h"
-#include "EDot.h"
+#include "EffectStack.h"
 
 #define LED_NUM 72
 #define BRIGHTNESS 56
 #define FRAMERATE 29
 
-
 Config cfg(DEFAULT_CONFIG);
 LEDBand *band;
-EDot *l;
-ERainbow *r;
 
-Effect* current_effect;
+EffectStack effects;
 
 void setup() {
-    Serial.begin(115200);
-    Serial.println("setup");
-    Serial.println(int(Channel::A));
-    band = new LEDBand(Channel::A, LED_NUM, FRAMERATE);
-    r = new ERainbow();
-    l = new EDot();
+  Serial.begin(115200);
+  Serial.println("setup");
+  Serial.println(int(Channel::A));
 
-    setupLEDs(BRIGHTNESS);
+  effects.configure(cfg.channel(Channel::A));
+  band = new LEDBand(Channel::A, LED_NUM, FRAMERATE);
 
-    l->config(cfg.effectConfig(F("dot")));
-    r->config(cfg.effectConfig(F("rainbow")));
-
-    current_effect = l;
+  setupLEDs(BRIGHTNESS);
 }
 
 void loop() {
-    unsigned long loop_time = millis();
-    band->blankLeds();
-    current_effect->update(*band, loop_time);
-    band->update();
+  unsigned long loop_time = millis();
+  band->blankLeds();
+  effects.loop(*band, loop_time);
+  band->update();
 }

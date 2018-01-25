@@ -5,43 +5,63 @@
 #ifndef BLINKENHAT_CONFIG_H
 #define BLINKENHAT_CONFIG_H
 
+#include <functional>
+
 #include <WString.h>
 #include <ArduinoJson.h>
 
+enum class Channel {
+  A = 0,
+  B = 1
+};
 
 class ConfigWrapper {
 
 public:
-    ConfigWrapper(const JsonObject &cfg) : cfg(cfg) {}
+  ConfigWrapper(const JsonObject &cfg) : cfg(cfg) {}
 
-    template<typename Tkey, typename Tvalue>
-    Tvalue getOption(const Tkey &key, const Tvalue &dflt) const {
-        if (cfg.containsKey(key)) {
-            return cfg.get<Tvalue>(key);
-        }
-        return dflt;
+  template<typename Tkey, typename Tvalue>
+  Tvalue getOption(const Tkey &key, const Tvalue &dflt) const {
+    if (cfg.containsKey(key)) {
+      return cfg.get<Tvalue>(key);
     }
+    return dflt;
+  }
 
 private:
-    const JsonObject &cfg;
+  const JsonObject &cfg;
 };
 
 class Config {
 public:
-    Config(const String default_cfg) : buff(), root(nullptr) {
-        load(default_cfg);
-    }
 
-    void load(const String &json);
+  class EffectCfg {
+  public:
+    EffectCfg(JsonObject &root) : fx_root(&root) {}
+    String type() const;
+    ConfigWrapper cfg() const;
+  private:
+    JsonObject *fx_root;
+  };
 
-    ConfigWrapper effectConfig(const String &effect) const {
-        return ConfigWrapper(root->get<JsonObject &>("effects")
-			.get<JsonObject &>(effect));
-    }
+  class ChannelCfg {
+  public:
+    ChannelCfg(JsonObject &root) : channel_root(&root) {}
+    ConfigWrapper for_each_fx(const std::function<void(const EffectCfg &)> &cb) const;
+  private:
+    JsonObject *channel_root;
+  };
 
+  Config(const String &default_cfg) : buff(), root(nullptr) {
+    load(default_cfg);
+  }
+
+  void load(const String &json);
+
+  ChannelCfg channel(const Channel &channel);
 private:
-    DynamicJsonBuffer buff;
-    JsonObject *root;
+  DynamicJsonBuffer buff;
+  JsonObject *root;
 };
 
 #endif //BLINKENHAT_CONFIG_H
