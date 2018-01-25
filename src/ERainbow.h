@@ -17,5 +17,4 @@ private:
   int speed;
   uint8_t apply_to;
   unsigned long start_time;
-  unsigned int duration;
 };
