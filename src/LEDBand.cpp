@@ -14,6 +14,10 @@ LEDBand::LEDBand(const Channel channel, const uint8_t numLEDs, const uint8_t fra
 void LEDBand::update() {
   unsigned long elapsed = millis() - last_update;
 
+  if (1.0f != gamma) {
+    allLeds().napplyGamma_video(gamma);
+  }
+
   if (elapsed < wait) {
 //    delay(wait - elapsed);
     FastLED.delay(wait - elapsed);
@@ -24,6 +28,10 @@ void LEDBand::update() {
   last_update = millis();
 
   // take the new time after update to get rid of the processing time of show()
+}
+
+void LEDBand::config(const Config::ChannelCfg &cfg) {
+  gamma = cfg.getOption("gamma", 1.0f);
 }
 
 void setupLEDs(uint8_t brightness) {

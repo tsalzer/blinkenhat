@@ -19,14 +19,14 @@ Config::ChannelCfg Config::channel(const Channel &channel) {
                             (channel==Channel::A ? F("A") : F("B"))));
 }
 
-String Config::EffectCfg::type() const { return fx_root->get<String>(F("typ")); }
+String Config::EffectCfg::type() const { return cfg->get<String>(F("typ")); }
 
 ConfigWrapper Config::EffectCfg::cfg() const {
-  return ConfigWrapper(fx_root->get<JsonObject &>(F("cfg")));
+  return ConfigWrapper(cfg->get<JsonObject &>(F("cfg")));
 }
 
 ConfigWrapper Config::ChannelCfg::for_each_fx(const std::function<void(const Config::EffectCfg &)> &cb) const {
-  for (auto fx: channel_root->get<JsonArray &>(F("effects"))) {
+  for (auto fx: cfg->get<JsonArray &>(F("effects"))) {
     cb(EffectCfg(fx.as<JsonObject &>()));
   }
 }

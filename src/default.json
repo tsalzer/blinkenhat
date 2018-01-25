@@ -1,6 +1,7 @@
 {
   "channels": {
     "A": {
+      "gamma" : 1,
       "effects": [
         {
           "typ": "rainbow",

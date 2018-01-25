@@ -18,38 +18,36 @@ enum class Channel {
 class ConfigWrapper {
 
 public:
-  ConfigWrapper(const JsonObject &cfg) : cfg(cfg) {}
+  ConfigWrapper(const JsonObject *cfg) : cfg(cfg) {}
 
   template<typename Tkey, typename Tvalue>
   Tvalue getOption(const Tkey &key, const Tvalue &dflt) const {
-    if (cfg.containsKey(key)) {
-      return cfg.get<Tvalue>(key);
+    if (cfg->containsKey(key)) {
+      return cfg->get<Tvalue>(key);
     }
     return dflt;
   }
 
-private:
-  const JsonObject &cfg;
+  virtual ~ConfigWrapper() = default;
+
+protected:
+  const JsonObject *cfg;
 };
 
 class Config {
 public:
 
-  class EffectCfg {
+  class EffectCfg : ConfigWrapper {
   public:
-    EffectCfg(JsonObject &root) : fx_root(&root) {}
+    EffectCfg(JsonObject &root) : ConfigWrapper(&root) {}
     String type() const;
     ConfigWrapper cfg() const;
-  private:
-    JsonObject *fx_root;
   };
 
-  class ChannelCfg {
+  class ChannelCfg : public ConfigWrapper {
   public:
-    ChannelCfg(JsonObject &root) : channel_root(&root) {}
+    ChannelCfg(JsonObject &root) : ConfigWrapper(&root) {}
     ConfigWrapper for_each_fx(const std::function<void(const EffectCfg &)> &cb) const;
-  private:
-    JsonObject *channel_root;
   };
 
   Config(const String &default_cfg) : buff(), root(nullptr) {

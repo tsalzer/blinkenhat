@@ -12,6 +12,7 @@ public:
   LEDBand(const Channel channel, const uint8_t numLEDs, const uint8_t framerate);
 
   void update();
+  void config(const Config::ChannelCfg& cfg);
 
   uint8_t getLEDCount(void) const { return numLEDs; }
 
@@ -25,6 +26,7 @@ public:
 private:
   CRGBSet leds;
   uint8_t numLEDs;
+  float gamma;
 
   unsigned int wait;
   unsigned long last_update;
