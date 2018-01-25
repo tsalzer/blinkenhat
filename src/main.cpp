@@ -2,9 +2,9 @@
 
 #include "default.h"
 #include "Config.h"
-#include "LEDBand.hpp"
-#include "ERainbow.hpp"
-#include "EDot.hpp"
+#include "LEDBand.h"
+#include "ERainbow.h"
+#include "EDot.h"
 
 #define LED_NUM 72
 #define BRIGHTNESS 56

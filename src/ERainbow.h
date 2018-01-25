@@ -1,5 +1,5 @@
 #pragma once
-#include "Effect.hpp"
+#include "Effect.h"
 
 class ERainbow : public Effect {
 public:
@@ -11,11 +11,7 @@ public:
     start_time = millis();
   }
 
-  void config(const ConfigWrapper &cfg) override {
-    speed = cfg.getOption(F("speed"), 10);
-    apply_to = cfg.getOption(F("apply"), 3);
-    restart();
-  }
+  void config(const ConfigWrapper &cfg) override;
 
 private:
   int speed;

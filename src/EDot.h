@@ -1,5 +1,5 @@
 #pragma once
-#include "Effect.hpp"
+#include "Effect.h"
 
 class EDot : public Effect {
 public:

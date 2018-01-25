@@ -1,4 +1,4 @@
-#include "LEDBand.hpp"
+#include "LEDBand.h"
 
 static const uint8_t maxLEDs = 100;
 static CRGBArray<maxLEDs * 2> led_arr;

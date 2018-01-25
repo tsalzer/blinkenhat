@@ -1,4 +1,4 @@
-#include "ERainbow.hpp"
+#include "ERainbow.h"
 
 void
 ERainbow::update(LEDBand &band, unsigned long time) {
@@ -8,4 +8,10 @@ ERainbow::update(LEDBand &band, unsigned long time) {
     band.upperLeds().fill_rainbow(hue);
   if (apply_to & 0x02)
     band.lowerLeds().fill_rainbow(255 - hue);
+}
+
+void ERainbow::config(const ConfigWrapper &cfg) {
+  speed = cfg.getOption(F("speed"), 10);
+  apply_to = cfg.getOption(F("apply"), 3);
+  restart();
 }

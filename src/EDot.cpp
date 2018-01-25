@@ -1,4 +1,4 @@
-#include "EDot.hpp"
+#include "EDot.h"
 
 void EDot::update(LEDBand &band, unsigned long time) {
   int max = band.getLEDCount()/2;

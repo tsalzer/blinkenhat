@@ -1,6 +1,6 @@
 #pragma once
 
-#include "LEDBand.hpp"
+#include "LEDBand.h"
 #include "Config.h"
 
 class Effect {
