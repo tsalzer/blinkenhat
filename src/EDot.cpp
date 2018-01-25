@@ -35,8 +35,10 @@ void EDot::update(LEDBand &band, unsigned long time) {
            CHSV color = CHSV(uint8_t((actual_hue + uint8_t(float(actual_off) * hue_coeff)) % 255),
                             255, brightness);
            unsigned int idx = (pos + actual_off) % max;
-           band.upper_leds()[idx] = color;
-           band.lower_leds()[idx] = color;
+           if (apply_to & 0x01)
+             band.upper_leds()[idx] = color;
+           if (apply_to & 0x02)
+             band.lower_leds()[idx] = color;
         }
     } while (pos != head);
 }
@@ -48,5 +50,6 @@ void EDot::config(const ConfigWrapper &cfg) {
     color_duration = cfg.getOption(F("color_speed"), 15U);
     count = cfg.getOption(F("count"), 1U);
     start_hue = cfg.getOption(F("hue"), uint8_t(0));
+    apply_to = cfg.getOption(F("apply"), uint8_t(3));
     restart();
 }
