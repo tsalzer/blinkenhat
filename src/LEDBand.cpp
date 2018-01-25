@@ -13,7 +13,7 @@ LEDBand::LEDBand(const Channel channel, const uint8_t numLEDs, const uint8_t fra
 
 void LEDBand::update() {
   unsigned long elapsed = millis() - last_update;
-Serial.println(elapsed);
+
   if (elapsed < wait) {
 //    delay(wait - elapsed);
     FastLED.delay(wait - elapsed);
