@@ -34,9 +34,9 @@ void EDot::update(LEDBand &band, unsigned long time) {
                             255, brightness);
            unsigned int idx = (pos + actual_off) % max;
            if (apply_to & 0x01)
-             band.upper_leds()[idx] = color;
+               band.upperLeds()[idx] = color;
            if (apply_to & 0x02)
-             band.lower_leds()[idx] = color;
+               band.lowerLeds()[idx] = color;
         }
     } while (pos != head);
 }

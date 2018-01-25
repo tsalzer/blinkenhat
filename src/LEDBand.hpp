@@ -18,9 +18,9 @@ public:
 
   uint8_t getLEDCount(void) const { return numLEDs; }
 
-  CRGBSet all_leds() { return leds; }
-  CRGBSet upper_leds() { return leds(0, (numLEDs / 2) - 1); }
-  CRGBSet lower_leds() { return CRGBSet(leds.leds, numLEDs - 1, (numLEDs / 2)); }
+  CRGBSet allLeds() { return leds; }
+  CRGBSet upperLeds() { return leds(0, (numLEDs / 2) - 1); }
+  CRGBSet lowerLeds() { return CRGBSet(leds.leds, numLEDs - 1, (numLEDs / 2)); }
 
   void blankLeds() { leds = CRGB::Black; }
 
