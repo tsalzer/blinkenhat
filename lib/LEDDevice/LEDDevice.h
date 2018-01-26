@@ -7,8 +7,7 @@
 
 #include <Config.h>
 #include <EffectStack.h>
-
-#include "LEDBand.h"
+#include <LEDBand.h>
 
 
 class LEDDevice {
