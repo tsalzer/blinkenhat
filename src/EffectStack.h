@@ -6,8 +6,8 @@
 #define BLINKENHAT_EFFECTSTACK_H
 
 #include <forward_list>
+#include <LEDBand.h>
 
-#include "LEDBand.h"
 #include "Effect.h"
 
 class EffectStack {

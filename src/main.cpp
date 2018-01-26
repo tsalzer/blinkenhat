@@ -1,9 +1,9 @@
 #include <Arduino.h>
 
 #include <Config.h>
+#include <LEDDevice.h>
 
 #include "default.h"
-#include "LEDDevice.h"
 
 
 Config cfg(DEFAULT_CONFIG);
