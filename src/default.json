@@ -1,4 +1,9 @@
 {
+  "sta_ssid": "",
+  "sta_ssid": "",
+  "ap_ssid": "",
+  "ap_ssid": "",
+  "ap_timeout": 0,
   "brightness": 100,
   "framerate": 29,
   "channels": {
