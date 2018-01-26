@@ -2,11 +2,11 @@
 
 #include <Config.h>
 #include <LEDDevice.h>
-
-#include "default.h"
+#include <WifiHandler.h>
 
 
 Config cfg;
+WifiHandler wifihandler;
 LEDDevice device;
 
 
@@ -16,6 +16,9 @@ void setup() {
   Serial.println(int(Channel::A));
 
   cfg.load();
+
+  wifihandler.configure(cfg);
+
   device.setup();
   device.configure(cfg);
 }
