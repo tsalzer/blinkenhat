@@ -8,16 +8,14 @@
 #include "EDot.h"
 
 Effect *EffectStack::createEffect(const Config::EffectCfg &cfg) {
-  Serial.println(cfg.type());
-
   if (cfg.type()==F("rainbow")) {
     Effect *fx = new ERainbow();
-    fx->config(cfg.cfg());
+    fx->config(cfg.config());
     return fx;
   }
   if (cfg.type()==F("dot")) {
     Effect *fx = new EDot();
-    fx->config(cfg.cfg());
+    fx->config(cfg.config());
     return fx;
   }
   return nullptr;

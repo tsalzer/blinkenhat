@@ -6,30 +6,26 @@
 #include <FastLED.h>
 #include "Config.h"
 
-
 class LEDBand {
 public:
-  LEDBand(const Channel channel, const uint8_t numLEDs, const uint8_t framerate);
+  LEDBand(const CRGBSet &leds, uint8_t num_leds, float gamma);
 
-  void update();
-  void config(const Config::ChannelCfg& cfg);
 
-  uint8_t getLEDCount(void) const { return numLEDs; }
+  uint8_t getLEDCount() const { return numLEDs; }
 
   CRGBSet allLeds() { return leds; }
-  CRGBSet upperLeds() { return leds(0, (numLEDs / 2) - 1); }
-  CRGBSet lowerLeds() { return CRGBSet(leds.leds, numLEDs - 1, (numLEDs / 2)); }
+  CRGBSet upperLeds() { return leds(0, (numLEDs/2) - 1); }
+  CRGBSet lowerLeds() { return CRGBSet(leds.leds, numLEDs - 1, (numLEDs/2)); }
 
   void blankLeds() { leds = CRGB::Black; }
-
+  void applyGamma() {
+    if (1.0f!=gamma) {
+      allLeds().napplyGamma_video(gamma);
+    }
+  }
 
 private:
   CRGBSet leds;
   uint8_t numLEDs;
   float gamma;
-
-  unsigned int wait;
-  unsigned long last_update;
 };
-
-void setupLEDs(uint8_t brightness);

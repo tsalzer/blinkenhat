@@ -15,6 +15,12 @@ enum class Channel {
   B = 1
 };
 
+inline void forEachChannel(const std::function<void(const Channel &channel)> &cb) {
+  cb(Channel::A);
+  cb(Channel::B);
+}
+
+
 class ConfigWrapper {
 
 public:
@@ -41,7 +47,7 @@ public:
   public:
     EffectCfg(JsonObject &root) : ConfigWrapper(&root) {}
     String type() const;
-    ConfigWrapper cfg() const;
+    ConfigWrapper config() const;
   };
 
   class ChannelCfg : public ConfigWrapper {
@@ -56,7 +62,9 @@ public:
 
   void load(const String &json);
 
-  ChannelCfg channel(const Channel &channel);
+  ConfigWrapper device() const { return ConfigWrapper(root); }
+
+  ChannelCfg channel(const Channel &channel) const;
 private:
   DynamicJsonBuffer buff;
   JsonObject *root;

@@ -13,16 +13,18 @@ void Config::load(const String &json) {
     root = &parsed;
   }
 }
-Config::ChannelCfg Config::channel(const Channel &channel) {
+Config::ChannelCfg Config::channel (const Channel &channel) const {
   return ChannelCfg(root->get<JsonObject &>(F("channels"))
                         .get<JsonObject &>(
                             (channel==Channel::A ? F("A") : F("B"))));
 }
 
-String Config::EffectCfg::type() const { return cfg->get<String>(F("typ")); }
+String Config::EffectCfg::type() const {
+  return cfg->get<String>(F("typ"));
+}
 
-ConfigWrapper Config::EffectCfg::cfg() const {
-  return ConfigWrapper(cfg->get<JsonObject &>(F("cfg")));
+ConfigWrapper Config::EffectCfg::config() const {
+  return ConfigWrapper(&(cfg->get<JsonObject &>(F("cfg"))));
 }
 
 ConfigWrapper Config::ChannelCfg::for_each_fx(const std::function<void(const Config::EffectCfg &)> &cb) const {

@@ -1,7 +1,10 @@
 {
+  "brightness": 56,
+  "framerate": 29,
   "channels": {
     "A": {
       "gamma" : 1,
+      "leds": 72,
       "effects": [
         {
           "typ": "rainbow",
@@ -24,6 +27,11 @@
           }
         }
       ]
+    },
+    "B": {
+      "gamma" : 1,
+      "leds": 72,
+      "effects": []
     }
   }
 }
