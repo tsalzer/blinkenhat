@@ -56,11 +56,13 @@ public:
     ConfigWrapper for_each_fx(const std::function<void(const EffectCfg &)> &cb) const;
   };
 
-  Config(const String &default_cfg) : buff(), root(nullptr) {
-    load(default_cfg);
+  Config() : buff(), root(nullptr) {
   }
 
-  void load(const String &json);
+  void saveNewConfig(const String& new_config) const;
+  void removeConfig() const;
+  void load();
+  String currentConfig() const;
 
   ConfigWrapper device() const { return ConfigWrapper(root); }
 

@@ -6,7 +6,7 @@
 #include "default.h"
 
 
-Config cfg(DEFAULT_CONFIG);
+Config cfg;
 LEDDevice device;
 
 
@@ -15,6 +15,7 @@ void setup() {
   Serial.println("setup");
   Serial.println(int(Channel::A));
 
+  cfg.load();
   device.setup();
   device.configure(cfg);
 }
