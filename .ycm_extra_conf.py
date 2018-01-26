@@ -44,6 +44,7 @@ PlatformioArduinoSTD = '~/.platformio/packages/toolchain-xtensa/include'
 # paths, or paths relative to the user (using ~/path/to/file).
 libDirs = [
            "lib"
+           ,".piolibdeps"
            ,PlatformioAutogen
            ,PlatformioArduinoCore
            ,PlatformioArduinoLibs
