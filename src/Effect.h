@@ -1,7 +1,7 @@
 #pragma once
 
+#include <Config.h>
 #include "LEDBand.h"
-#include "Config.h"
 
 class Effect {
 public:

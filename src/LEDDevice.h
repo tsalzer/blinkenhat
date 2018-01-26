@@ -5,9 +5,12 @@
 #ifndef BLINKENHAT_LEDDEVICE_H
 #define BLINKENHAT_LEDDEVICE_H
 
+#include <Config.h>
+
 #include "LEDBand.h"
 #include "EffectStack.h"
-#include "Config.h"
+
+
 class LEDDevice {
 public:
   LEDDevice();

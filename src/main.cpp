@@ -1,7 +1,8 @@
 #include <Arduino.h>
 
+#include <Config.h>
+
 #include "default.h"
-#include "Config.h"
 #include "LEDDevice.h"
 
 
