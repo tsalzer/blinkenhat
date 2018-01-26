@@ -6,9 +6,9 @@
 #define BLINKENHAT_LEDDEVICE_H
 
 #include <Config.h>
+#include <EffectStack.h>
 
 #include "LEDBand.h"
-#include "EffectStack.h"
 
 
 class LEDDevice {
