@@ -34,7 +34,8 @@ bool WifiHandler::connect() {
   if (ap_ssid.length() > 0 && ap_passwd.length() > 0) {
     WiFi.mode(WIFI_AP_STA);
 
-    WiFi.softAP(ap_ssid.c_str(), ap_passwd.c_str());
+    WiFi.softAP((ap_ssid + String(ESP.getChipId(), HEX)).c_str(),
+		ap_passwd.c_str());
 
     dnsServer.setErrorReplyCode(DNSReplyCode::NoError);
     dnsServer.start(DNS_PORT, "*", WiFi.softAPIP());
