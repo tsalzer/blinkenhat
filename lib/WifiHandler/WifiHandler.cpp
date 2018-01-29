@@ -23,8 +23,9 @@ bool WifiHandler::connect() {
     WiFi.mode(WIFI_STA);
     WiFi.begin(sta_ssid.c_str(), sta_passwd.c_str());
 
-    for (int i = 0; i < 5; ++i) {
+    for (int i = 0; i < 40; ++i) {
       if (WiFi.status() == WL_CONNECTED) {
+	Serial.println(WiFi.localIP());
         return true;
       }
       delay(50);
