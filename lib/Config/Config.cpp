@@ -10,18 +10,22 @@
 
 const char PROGMEM FILENAME[] = "/config.json";
 
+Config::Config() : buff(), root(nullptr) {
+  SPIFFS.begin();
+}
 
 void Config::load() {
   buff.clear();
   root = nullptr;
 
   if (SPIFFS.exists(FPSTR(FILENAME))) {
-    File file = SPIFFS.open(FILENAME, "r");
+    File file = SPIFFS.open(FPSTR(FILENAME), "r");
     if (file) {
       JsonObject &parsed = buff.parseObject(file);
       if (parsed.success()) {
         root = &parsed;
       }
+      file.close();
     }
   }
 
@@ -34,17 +38,27 @@ void Config::load() {
   }
 }
 
-void Config::saveNewConfig(const String &new_config) const {
-  File file = SPIFFS.open(FILENAME, "w");
-  if (file) {
-    root->printTo(file);
-    file.close();
+bool Config::saveNewConfig(const String &new_config) const {
+  DynamicJsonBuffer tmp_buff;
+  JsonObject &tmp_conf = tmp_buff.parseObject(new_config);
+
+  if (! tmp_conf.success()) {
+    return false;
   }
+
+  File file = SPIFFS.open(FPSTR(FILENAME), "w");
+  if (file) {
+    tmp_conf.printTo(file);
+    file.close();
+    return true;
+  }
+
+  return false;
 }
 
 void Config::removeConfig() const {
   if (SPIFFS.exists(FPSTR(FILENAME))) {
-    SPIFFS.remove(FILENAME);
+    SPIFFS.remove(FPSTR(FILENAME));
   }
 }
 

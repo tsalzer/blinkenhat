@@ -56,10 +56,9 @@ public:
     ConfigWrapper for_each_fx(const std::function<void(const EffectCfg &)> &cb) const;
   };
 
-  Config() : buff(), root(nullptr) {
-  }
+  Config();
 
-  void saveNewConfig(const String& new_config) const;
+  bool saveNewConfig(const String& new_config) const;
   void removeConfig() const;
   void load();
   String currentConfig() const;
