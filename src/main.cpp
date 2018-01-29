@@ -20,6 +20,7 @@ void setup() {
   cfg.load();
 
   wifihandler.configure(cfg);
+  wifihandler.connect();
 
   device.setup();
   device.configure(cfg);
