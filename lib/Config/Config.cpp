@@ -36,6 +36,10 @@ void Config::load() {
       root = &parsed;
     }
   }
+
+  for (auto &cb : reconf_cb) {
+    cb(*this);
+  }
 }
 
 bool Config::saveNewConfig(const String &new_config) const {

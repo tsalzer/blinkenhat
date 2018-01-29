@@ -26,6 +26,8 @@ void setup() {
   device.configure(cfg);
 
   web.configure(cfg);
+
+  cfg.onReconf([&](const Config& new_cfg){ device.configure(new_cfg); });
 }
 
 void loop() {
