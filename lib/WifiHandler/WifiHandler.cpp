@@ -8,10 +8,10 @@ void WifiHandler::configure(const Config &cfg) {
   ConfigWrapper dcfg = cfg.device();
 
   sta_ssid = dcfg.getOption(F("sta_ssid"), String());
-  sta_passwd = dcfg.getOption(F("sta_ssid"), String());
+  sta_passwd = dcfg.getOption(F("sta_passwd"), String());
 
   ap_ssid = dcfg.getOption(F("ap_ssid"), String());
-  ap_passwd = dcfg.getOption(F("ap_ssid"), String());
+  ap_passwd = dcfg.getOption(F("ap_passwd"), String());
 
   timeout = dcfg.getOption(F("ap_timeout"), 0U);
 }
