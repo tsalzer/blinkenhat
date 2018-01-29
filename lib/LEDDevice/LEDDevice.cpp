@@ -64,6 +64,7 @@ void LEDDevice::loop(unsigned long time) {
     });
 
     last_update = millis();
+    return;
   }
 
   FastLED.show();
