@@ -25,7 +25,7 @@ for fname in INPUT:
         break
 
 
-with open("src/default.json", "r") as fn:
+with open(input_file, "r") as fn:
     parsed = json.load(fn)
 
     data = TEMPLATE % {"cfg": json.dumps(
