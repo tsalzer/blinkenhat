@@ -4,6 +4,10 @@
 const char PROGMEM TEXT_PLAIN[] = "text/plain";
 const char PROGMEM APPLICATION_JSON[] = "application/json";
 
+static String strResult(const bool inp) {
+  return (inp ? F("true") : F("false"));
+}
+
 void WebServer::configure(Config &config) {
 
   /*
@@ -75,14 +79,28 @@ void WebServer::configure(Config &config) {
    * GET /config
    */
   web.on(F("/config"), HTTP_GET, [&]() {
-    config.saveNewConfig(web.arg("plain"));
-    config.load();
     web.send(200, FPSTR(APPLICATION_JSON), config.currentConfig());
   });
 
   /*
    * POST /config
    */
-  web.on(F("/config"), HTTP_POST,
-         [this]() { web.send(200, FPSTR(APPLICATION_JSON), F("true")); });
+  web.on(F("/config"), HTTP_POST, [&]() {
+    bool success = web.args() == 1 && config.saveNewConfig(web.arg(0));
+    if (success) {
+      config.load();
+    }
+    web.send(200, FPSTR(APPLICATION_JSON), strResult(success));
+  });
+
+  /*
+   * DELETE /config
+   */
+  web.on(F("/config"), HTTP_DELETE, [&]() {
+    config.removeConfig();
+    config.load();
+    web.send(200, FPSTR(APPLICATION_JSON), strResult(true));
+  });
+
+  web.begin();
 }

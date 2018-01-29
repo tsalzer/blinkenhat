@@ -7,7 +7,7 @@
 
 class WebServer {
 public:
-  WebServer() = default;
+  WebServer() : web(80) {}
 
   void configure(Config &config);
   void loop() { web.handleClient(); }
