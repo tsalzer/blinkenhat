@@ -1,6 +1,9 @@
+*.swp
+*.bak
 .pioenvs
 .piolibdeps
 .clang_complete
 .gcc-flags.json
-src/default.h
+lib/Config/default.h
+src/default_custom.json
 CMakeListsPrivate.txt

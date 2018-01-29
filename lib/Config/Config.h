@@ -5,6 +5,7 @@
 #ifndef BLINKENHAT_CONFIG_H
 #define BLINKENHAT_CONFIG_H
 
+#include <forward_list>
 #include <functional>
 
 #include <WString.h>
@@ -42,6 +43,7 @@ protected:
 
 class Config {
 public:
+  using ReconfCb = std::function<void(const Config&)>;
 
   class EffectCfg : ConfigWrapper {
   public:
@@ -56,11 +58,14 @@ public:
     ConfigWrapper for_each_fx(const std::function<void(const EffectCfg &)> &cb) const;
   };
 
-  Config(const String &default_cfg) : buff(), root(nullptr) {
-    load(default_cfg);
-  }
+  Config();
 
-  void load(const String &json);
+  bool saveNewConfig(const String& new_config) const;
+  void removeConfig() const;
+  void load();
+  String currentConfig() const;
+
+  void onReconf(const ReconfCb& cb) { reconf_cb.emplace_front(cb); }
 
   ConfigWrapper device() const { return ConfigWrapper(root); }
 
@@ -68,6 +73,7 @@ public:
 private:
   DynamicJsonBuffer buff;
   JsonObject *root;
+  std::forward_list<ReconfCb> reconf_cb;
 };
 
 #endif //BLINKENHAT_CONFIG_H

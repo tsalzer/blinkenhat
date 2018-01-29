@@ -50,22 +50,22 @@ void LEDDevice::configure(const Config &cfg) {
 }
 
 void LEDDevice::loop(unsigned long time) {
-  forEachChannel([&](const Channel &channel) {
-    LEDBand *band = bands[int(channel)];
-    EffectStack &effect = effects[int(channel)];
+  unsigned long elapsed = time - last_update;
 
-    band->blankLeds();
-    effect.loop(*band, time);
-    band->applyGamma();
-  });
+  if (elapsed >= frame_time) {
 
-  unsigned long elapsed = millis() - last_update;
-  if (elapsed < frame_time) {
-    FastLED.delay(frame_time - elapsed);
-  } else {
-    // we can't guarantee the framerate
-    FastLED.show();
+    forEachChannel([&](const Channel &channel) {
+      LEDBand *band = bands[int(channel)];
+      EffectStack &effect = effects[int(channel)];
+
+      band->blankLeds();
+      effect.loop(*band, time);
+      band->applyGamma();
+    });
+
+    last_update = millis();
   }
-  last_update = millis();
+
+  FastLED.show();
 }
 

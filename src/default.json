@@ -1,4 +1,9 @@
 {
+  "sta_ssid": "",
+  "sta_passwd": "",
+  "ap_ssid": "blinkenhat",
+  "ap_passwd": "blink_password",
+  "ap_timeout": 0,
   "brightness": 100,
   "framerate": 29,
   "channels": {
