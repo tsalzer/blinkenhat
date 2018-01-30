@@ -18,7 +18,7 @@ void LEDDevice::setup() {
 
 LEDDevice::LEDDevice() : brightness(50), frame_time(1000/30), last_update(0), bands({nullptr, nullptr}) {}
 
-void LEDDevice::recreateChannel(const Channel &channel, const Config::ChannelCfg &c_cfg) {
+void LEDDevice::recreateChannel(const Channel &channel, const HatConfig::ChannelCfg &c_cfg) {
   int idx = int(channel);
 
   uint8_t num_leds = c_cfg.getOption("leds", uint8_t(70));
@@ -31,7 +31,7 @@ void LEDDevice::recreateChannel(const Channel &channel, const Config::ChannelCfg
   bands[idx] = new LEDBand(led_arr((idx*maxLEDs), ((idx*maxLEDs) + num_leds - 1)), num_leds, gamma);
 }
 
-void LEDDevice::configure(const Config &cfg) {
+void LEDDevice::configure(const HatConfig &cfg) {
   const ConfigWrapper root(cfg.device());
 
   brightness = root.getOption(F("brightness"), uint8_t(50));
@@ -41,7 +41,7 @@ void LEDDevice::configure(const Config &cfg) {
   FastLED.setBrightness(brightness);
 
   forEachChannel([&](const Channel &channel) {
-    const Config::ChannelCfg ccfg(cfg.channel(channel));
+    const HatConfig::ChannelCfg ccfg(cfg.channel(channel));
     effects[int(channel)].configure(ccfg);
 
     recreateChannel(channel, ccfg);
@@ -69,4 +69,3 @@ void LEDDevice::loop(unsigned long time) {
 
   FastLED.show();
 }
-

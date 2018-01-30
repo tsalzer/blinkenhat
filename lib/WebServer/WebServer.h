@@ -1,7 +1,7 @@
 #ifndef BLINKENHAT_WEBSERVER_H
 #define BLINKENHAT_WEBSERVER_H
 
-#include <Config.h>
+#include <HatConfig.h>
 #include <ESP8266WebServer.h>
 
 
@@ -9,7 +9,7 @@ class WebServer {
 public:
   WebServer() : web(80) {}
 
-  void configure(Config &config);
+  void configure(HatConfig &config);
   void loop() { web.handleClient(); }
 
 private:

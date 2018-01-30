@@ -8,7 +8,7 @@ static String strResult(const bool inp) {
   return (inp ? F("true") : F("false"));
 }
 
-void WebServer::configure(Config &config) {
+void WebServer::configure(HatConfig &config) {
 
   /*
    * GET /

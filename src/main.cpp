@@ -1,12 +1,12 @@
 #include <Arduino.h>
 
-#include <Config.h>
+#include <HatConfig.h>
 #include <LEDDevice.h>
 #include <WifiHandler.h>
 #include <WebServer.h>
 
 
-Config cfg;
+HatConfig cfg;
 WifiHandler wifihandler;
 LEDDevice device;
 WebServer web;

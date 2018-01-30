@@ -1,12 +1,12 @@
 #ifndef BLINKENHAT_WIFIHANDLER_H
 #define BLINKENHAT_WIFIHANDLER_H
 
-#include <Config.h>
+#include <HatConfig.h>
 #include <DNSServer.h>
 
 class WifiHandler {
 public:
-  void configure(const Config &cfg);
+  void configure(const HatConfig &cfg);
   bool connect();
   void loop() {
     // .. disconnect after timeout

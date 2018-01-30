@@ -12,7 +12,7 @@
 
 class EffectStack {
 public:
-  void configure(const Config::ChannelCfg &cfg);
+  void configure(const HatConfig::ChannelCfg &cfg);
 
   void loop(LEDBand &band, unsigned long time) {
     for (auto effect : effects) {
@@ -21,7 +21,7 @@ public:
   }
 
 private:
-  Effect *createEffect(const Config::EffectCfg &cfg);
+  Effect *createEffect(const HatConfig::EffectCfg &cfg);
 
   std::forward_list<Effect *> effects;
 };
