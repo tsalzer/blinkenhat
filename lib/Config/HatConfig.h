@@ -41,9 +41,9 @@ protected:
   const JsonObject *cfg;
 };
 
-class Config {
+class HatConfig {
 public:
-  using ReconfCb = std::function<void(const Config&)>;
+  using ReconfCb = std::function<void(const HatConfig&)>;
 
   class EffectCfg : ConfigWrapper {
   public:
@@ -58,7 +58,7 @@ public:
     ConfigWrapper for_each_fx(const std::function<void(const EffectCfg &)> &cb) const;
   };
 
-  Config();
+  HatConfig();
 
   bool saveNewConfig(const String& new_config) const;
   void removeConfig() const;

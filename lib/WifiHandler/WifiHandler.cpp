@@ -4,7 +4,7 @@
 
 const byte DNS_PORT = 53;
 
-void WifiHandler::configure(const Config &cfg) {
+void WifiHandler::configure(const HatConfig &cfg) {
   ConfigWrapper dcfg = cfg.device();
 
   sta_ssid = dcfg.getOption(F("sta_ssid"), String());

@@ -4,17 +4,17 @@
 
 #include <FS.h>
 
-#include "Config.h"
+#include "HatConfig.h"
 #include "default.h"
 
 
 const char PROGMEM FILENAME[] = "/config.json";
 
-Config::Config() : buff(), root(nullptr) {
+HatConfig::HatConfig() : buff(), root(nullptr) {
   SPIFFS.begin();
 }
 
-void Config::load() {
+void HatConfig::load() {
   buff.clear();
   root = nullptr;
 
@@ -42,7 +42,7 @@ void Config::load() {
   }
 }
 
-bool Config::saveNewConfig(const String &new_config) const {
+bool HatConfig::saveNewConfig(const String &new_config) const {
   DynamicJsonBuffer tmp_buff;
   JsonObject &tmp_conf = tmp_buff.parseObject(new_config);
 
@@ -60,34 +60,34 @@ bool Config::saveNewConfig(const String &new_config) const {
   return false;
 }
 
-void Config::removeConfig() const {
+void HatConfig::removeConfig() const {
   if (SPIFFS.exists(FPSTR(FILENAME))) {
     SPIFFS.remove(FPSTR(FILENAME));
   }
 }
 
-String Config::currentConfig() const {
+String HatConfig::currentConfig() const {
   String output;
   root->printTo(output);
   return output;
 }
 
 
-Config::ChannelCfg Config::channel (const Channel &channel) const {
+HatConfig::ChannelCfg HatConfig::channel (const Channel &channel) const {
   return ChannelCfg(root->get<JsonObject &>(F("channels"))
                         .get<JsonObject &>(
                             (channel==Channel::A ? F("A") : F("B"))));
 }
 
-String Config::EffectCfg::type() const {
+String HatConfig::EffectCfg::type() const {
   return cfg->get<String>(F("typ"));
 }
 
-ConfigWrapper Config::EffectCfg::config() const {
+ConfigWrapper HatConfig::EffectCfg::config() const {
   return ConfigWrapper(&(cfg->get<JsonObject &>(F("cfg"))));
 }
 
-ConfigWrapper Config::ChannelCfg::for_each_fx(const std::function<void(const Config::EffectCfg &)> &cb) const {
+ConfigWrapper HatConfig::ChannelCfg::for_each_fx(const std::function<void(const HatConfig::EffectCfg &)> &cb) const {
   for (auto fx: cfg->get<JsonArray &>(F("effects"))) {
     cb(EffectCfg(fx.as<JsonObject &>()));
   }

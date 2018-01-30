@@ -7,7 +7,7 @@
 #include "ERainbow.h"
 #include "EDot.h"
 
-Effect *EffectStack::createEffect(const Config::EffectCfg &cfg) {
+Effect *EffectStack::createEffect(const HatConfig::EffectCfg &cfg) {
   if (cfg.type()==F("rainbow")) {
     Effect *fx = new ERainbow();
     fx->config(cfg.config());
@@ -21,13 +21,13 @@ Effect *EffectStack::createEffect(const Config::EffectCfg &cfg) {
   return nullptr;
 }
 
-void EffectStack::configure(const Config::ChannelCfg &cfg) {
+void EffectStack::configure(const HatConfig::ChannelCfg &cfg) {
   for (auto item : effects) {
     delete item;
   }
   effects.clear();
 
-  cfg.for_each_fx([&](const Config::EffectCfg &fx_cfg) {
+  cfg.for_each_fx([&](const HatConfig::EffectCfg &fx_cfg) {
     Effect *fx = createEffect(fx_cfg);
     if (fx) {
       effects.emplace_front(fx);

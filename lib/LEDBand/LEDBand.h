@@ -4,7 +4,7 @@
 #define FASTLED_ALLOW_INTERRUPTS 0
 
 #include <FastLED.h>
-#include <Config.h>
+#include <HatConfig.h>
 
 class LEDBand {
 public:
