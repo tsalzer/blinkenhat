@@ -68,4 +68,5 @@ void LEDDevice::loop(unsigned long time) {
   }
 
   FastLED.show();
+  delayMicroseconds(50);
 }
