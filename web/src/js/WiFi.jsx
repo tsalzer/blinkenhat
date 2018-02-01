@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 
-import Typography from 'material-ui/Typography';
 import TextField from 'material-ui/TextField';
 import PaperContainer from './PaperContainer'
+import Page from './Page'
 
 import {withStyles} from 'material-ui/styles';
 
@@ -29,10 +29,7 @@ class WiFi extends Component {
     const {classes} = this.props;
 
     return (
-      <div className={classes.root}>
-        <Typography type="headline" gutterBottom>
-          WiFi Settings
-        </Typography>
+      <Page name="WiFi Settings">
         <PaperContainer headline="Station mode settings">
           <TextField
             fullWidth
@@ -69,7 +66,7 @@ class WiFi extends Component {
             margin="normal"
           />
         </PaperContainer>
-      </div>
+      </Page>
     );
   }
 }

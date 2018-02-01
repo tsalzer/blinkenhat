@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 
-import Typography from 'material-ui/Typography';
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
 
 import PaperContainer from './PaperContainer'
+import Page from './Page'
 
 import {withStyles} from 'material-ui/styles';
 
@@ -40,11 +40,8 @@ class Upgrade extends Component {
     const {classes} = this.props;
 
     return (
-      <div className={classes.root}>
+      <Page name="Upgrade">
         <form method="post" action="/firmware" encType="multipart/form-data">
-          <Typography type="headline" gutterBottom>
-            Upgrade
-          </Typography>
           <PaperContainer headline="Firmware">
             <TextField
               id="firmware"
@@ -62,7 +59,7 @@ class Upgrade extends Component {
             </Button>
           </PaperContainer>
         </form>
-      </div>
+      </Page>
     );
   }
 }
