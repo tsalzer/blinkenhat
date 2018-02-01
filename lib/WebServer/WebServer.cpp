@@ -46,6 +46,8 @@ void WebServer::configure(HatConfig &config) {
                         PSTR("Update successful.\n\nDevice will reboot and try "
                              "to reconnect in 20 seconds."));
         }
+        delay(1000);
+        WiFi.disconnect(true);
         delay(500);
         ESP.restart();
       },
