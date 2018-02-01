@@ -1,5 +1,6 @@
 
 #include "WebServer.h"
+#include "index.h"
 
 const char PROGMEM TEXT_PLAIN[] = "text/plain";
 const char PROGMEM APPLICATION_JSON[] = "application/json";
@@ -13,8 +14,12 @@ void WebServer::configure(HatConfig &config) {
   /*
    * GET /
    */
-  web.on(F("/"), HTTP_GET,
-         [this]() { web.send(200, FPSTR(TEXT_PLAIN), F("Hello.")); });
+  web.on(F("/"), HTTP_GET, [this]() {
+      web.sendHeader(F("Content-Encoding"), F("deflate"));
+      web.setContentLength(index_html_len);
+      web.send(200, F("text/html"), "");
+      web.sendContent_P(index_html, index_html_len);
+   });
 
   /*
    * GET /firmware
