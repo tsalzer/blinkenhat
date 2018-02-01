@@ -14,7 +14,13 @@ module.exports = {
     filename: "js/[name].js"
   },
   devServer: {
-    contentBase: "./dist"
+    contentBase: "./dist",
+    proxy: {
+        '/config': {
+            target: 'http://localhost:3000',
+            secure: false
+        }
+    }
   },
   devtool: "source-map",
   module: {

@@ -1,0 +1,44 @@
+{
+  "config": {
+    "sta_ssid": "",
+    "sta_passwd": "",
+    "ap_ssid": "blinkenhat",
+    "ap_passwd": "blink_password",
+    "ap_timeout": 0,
+    "brightness": 100,
+    "framerate": 29,
+    "channels": {
+      "A": {
+        "gamma": 1,
+        "leds": 72,
+        "effects": [
+          {
+            "typ": "rainbow",
+            "cfg": {
+              "speed": 5000,
+              "apply": 1,
+              "coeff": 1.0
+            }
+          },
+          {
+            "typ": "dot",
+            "cfg": {
+              "count": 3,
+              "speed": 6000,
+              "len": 10,
+              "hue": 0,
+              "color_speed": 4000,
+              "apply": 2,
+              "coeff": 1.0
+            }
+          }
+        ]
+      },
+      "B": {
+        "gamma": 1,
+        "leds": 72,
+        "effects": []
+      }
+    }
+  }
+}
