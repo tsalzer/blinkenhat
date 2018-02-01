@@ -18,9 +18,10 @@ install:
   - platformio update
   - platformio lib install
   # install node
-  #- nvm install node
-  #- cd web && npm install && cd ..
+  - nvm install node
+  - cd web && npm install && cd ..
 
 script:
+  - cd web && NODE_ENV=production npm run build && cd ..
   - platformio run --environment=$PLATFORMIO_ENV
 
