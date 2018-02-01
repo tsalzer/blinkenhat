@@ -27,7 +27,7 @@ The dev version of the frontend is then available at http://localhost:8080.
 
 ## Build
 
-For the "production" buil you need node as with the development version.
+For the "production" build you need node as with the development version.
 Install all dependencies:
 ```bash
 $ npm install
@@ -38,4 +38,4 @@ Run the build process:
 $ NODE_ENV="production" npm run build
 ```
 
-This creates `ist/index.html` which will be picked up by the platformio build process and included in the binary.
+This creates `dist/index.html` which will be picked up by the platformio build process and included in the binary.
