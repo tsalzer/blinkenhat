@@ -9,6 +9,7 @@ import {withStyles} from 'material-ui/styles';
 
 import Head from './Head';
 import Navigation from './Navigation';
+import Upgrade from './Upgrade';
 
 
 const styles = {
@@ -23,6 +24,7 @@ class Main extends Component {
     super(props);
     this.state = {
       drawer: true,
+      view: 0
     }
   }
 
@@ -30,14 +32,22 @@ class Main extends Component {
     this.setState({drawer: open});
   }
 
+  changeView(viewNum) {
+    this.setState({view: viewNum,
+                  drawer: false});
+  }
+
   render() {
     const {classes} = this.props;
+
+        const  view  = this.state.view;
 
     return (
       <div className={classes.root}>
         <Reboot/>
-        <Navigation hideDrawer={() => this.toggleDrawer(false)} open={this.state.drawer}/>
+        <Navigation onViewChange={n => this.changeView(n)} hideDrawer={() => this.toggleDrawer(false)} open={this.state.drawer}/>
         <Head showDrawer={() => this.toggleDrawer(true)}/>
+        {view === 4 && <Upgrade/>}
       </div>
     );
   }

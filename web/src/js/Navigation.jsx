@@ -32,7 +32,7 @@ const styles = theme => ({
 
 function NavItem(props) {
   return (
-    <ListItem button>
+    <ListItem button onClick={props.onClick}>
       <ListItemIcon>
         {props.icon}
       </ListItemIcon>
@@ -59,14 +59,14 @@ class Navigation extends Component {
           <Divider/>
           <div className={classes.list}>
             <List>
-              <NavItem label="Channel A" icon={<LightbulbOutlineIcon/>}/>
-              <NavItem label="Channel B" icon={<LightbulbOutlineIcon/>}/>
+              <NavItem label="Channel A" icon={<LightbulbOutlineIcon/>} onClick={() => this.props.onViewChange(0)}/>
+              <NavItem label="Channel B" icon={<LightbulbOutlineIcon/>} onClick={() => this.props.onViewChange(1)}/>
             </List>
             <Divider/>
             <List>
-              <NavItem label="General" icon={<SettingsIcon/>}/>
-              <NavItem label="Wifi" icon={<WifiIcon/>}/>
-              <NavItem label="Upgrade" icon={<UpdateIcon/>}/>
+              <NavItem label="General" icon={<SettingsIcon/>} onClick={() => this.props.onViewChange(2)}/>
+              <NavItem label="Wifi" icon={<WifiIcon/>} onClick={() => this.props.onViewChange(3)}/>
+              <NavItem label="Upgrade" icon={<UpdateIcon/>} onClick={() => this.props.onViewChange(4)}/>
             </List>
           </div>
         </div>

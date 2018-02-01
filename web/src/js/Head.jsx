@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import Reboot from 'material-ui/Reboot';
 
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
