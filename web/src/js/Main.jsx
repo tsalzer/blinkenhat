@@ -4,6 +4,9 @@
  */
 import React, {Component} from 'react';
 import Reboot from 'material-ui/Reboot';
+import Snackbar from 'material-ui/Snackbar';
+import Slide from 'material-ui/transitions/Slide';
+
 import {MuiThemeProvider, createMuiTheme} from 'material-ui/styles';
 
 import axios from 'axios';
@@ -50,12 +53,17 @@ class Main extends Component {
         const new_config = res.data;
         this.setState(
           {global_data: Object.assign({}, this.state.global_data, new_config)}
-          );
+        );
       });
   }
 
   saveConfig() {
-    axios.post('/config', this.state.global_data);
+    axios.post('/config', this.state.global_data)
+      .then(rsp => {
+        this.showMessage("Config saved");
+      }).catch(reason => {
+      this.showMessage("Save failed")
+    });
   }
 
   componentDidMount() {
@@ -64,6 +72,10 @@ class Main extends Component {
 
   toggleDrawer(open) {
     this.setState({drawer: open});
+  }
+
+  showMessage(message) {
+    this.setState({last_message: message, show_message: true})
   }
 
   changeView(viewNum) {
@@ -93,6 +105,16 @@ class Main extends Component {
           {view === 3 &&
           <WiFi cfg_data={this.state.global_data} onDataChange={(field, val) => this.setGlobalData(field, val)}/>}
           {view === 4 && <Upgrade/>}
+          <Snackbar
+            open={this.state.show_message}
+            transition={Slide}
+            autoHideDuration={4000}
+            SnackbarContentProps={{
+              'aria-describedby': 'message-id',
+            }}
+            onClose={() => this.setState({show_message: false})}
+            message={<span id="message-id">{this.state.last_message}</span>}
+          />
         </MuiThemeProvider>
       </div>
     );
