@@ -6,6 +6,7 @@ import React, {Component} from 'react';
 import Reboot from 'material-ui/Reboot';
 import {MuiThemeProvider, createMuiTheme} from 'material-ui/styles';
 
+import axios from 'axios';
 
 import {withStyles} from 'material-ui/styles';
 
@@ -22,10 +23,10 @@ const styles = {
 };
 
 const theme = createMuiTheme({
-  palette: {
-    type: 'dark', // Switching the dark mode on is a single property value change.
-  },
-});
+                               palette: {
+                                 type: 'dark', // Switching the dark mode on is a single property value change.
+                               },
+                             });
 
 class Main extends Component {
 
@@ -43,15 +44,33 @@ class Main extends Component {
     }
   }
 
+  loadConfig() {
+    axios.get(`/config`)
+      .then(res => {
+        const new_config = res.data;
+        this.setState(
+          {global_data: Object.assign({}, this.state.global_data, new_config)}
+          );
+      });
+  }
+
+  saveConfig() {
+    axios.post('/config', this.state.global_data);
+  }
+
+  componentDidMount() {
+    this.loadConfig();
+  }
+
   toggleDrawer(open) {
     this.setState({drawer: open});
   }
 
   changeView(viewNum) {
     this.setState({
-      view: viewNum,
-      drawer: false
-    });
+                    view: viewNum,
+                    drawer: false
+                  });
   }
 
   setGlobalData(field, value) {
@@ -70,7 +89,7 @@ class Main extends Component {
           <Reboot/>
           <Navigation onViewChange={n => this.changeView(n)} hideDrawer={() => this.toggleDrawer(false)}
                       open={this.state.drawer}/>
-          <Head showDrawer={() => this.toggleDrawer(true)}/>
+          <Head showDrawer={() => this.toggleDrawer(true)} onSave={() => this.saveConfig()}/>
           {view === 3 &&
           <WiFi cfg_data={this.state.global_data} onDataChange={(field, val) => this.setGlobalData(field, val)}/>}
           {view === 4 && <Upgrade/>}

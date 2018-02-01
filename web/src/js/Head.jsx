@@ -35,7 +35,7 @@ class Head extends Component {
           <Typography type="title" color="inherit" className={classes.flex}>
             BlinkenHat
           </Typography>
-          <Button color="inherit">Save</Button>
+          <Button color="inherit" onClick={this.props.onSave}>Save</Button>
         </Toolbar>
       </AppBar>
     );
