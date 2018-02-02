@@ -93,8 +93,7 @@ class Channel extends Component {
   updateEffectData(id, field) {
     return event => {
       this.props.dataMangle(d => {
-        console.log(event.target.value);
-        d.effects[id][field] = parseFloat(event.target.value);
+        d.effects[id].cfg[field] = parseFloat(event.target.value);
       });
     }
   }
