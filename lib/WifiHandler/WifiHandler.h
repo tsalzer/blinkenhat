@@ -1,5 +1,6 @@
 #ifndef BLINKENHAT_WIFIHANDLER_H
 #define BLINKENHAT_WIFIHANDLER_H
+#include <ESP8266WiFi.h>
 
 #include <HatConfig.h>
 #include <DNSServer.h>
@@ -8,7 +9,11 @@ class WifiHandler {
 public:
   void configure(const HatConfig &cfg);
   bool connect();
+
+  bool isConnected() { return (WiFi.softAPgetStationNum() > 0); }
   void loop() {
+    //Serial.printf("Stations connected = %d\n", WiFi.softAPgetStationNum());
+    dnsServer.processNextRequest();
     // .. disconnect after timeout
     // use softAPgetStationNum to check if clients connected.
   }

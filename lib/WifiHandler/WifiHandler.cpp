@@ -1,4 +1,5 @@
 #include <ESP8266WiFi.h>
+#include <user_interface.h>
 
 #include "WifiHandler.h"
 
@@ -39,6 +40,10 @@ bool WifiHandler::connect() {
     WiFi.softAP((ap_ssid + String(ESP.getChipId(), HEX)).c_str(),
 		ap_passwd.c_str());
 
+    delay(500);
+    Serial.println(WiFi.softAPIP());
+
+    dnsServer.setTTL(300);
     dnsServer.setErrorReplyCode(DNSReplyCode::NoError);
     dnsServer.start(DNS_PORT, "*", WiFi.softAPIP());
 
