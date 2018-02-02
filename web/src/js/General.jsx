@@ -21,7 +21,7 @@ class General extends Component {
 
   changeData(field) {
     return event => {
-      this.props.onDataChange(field, event.target.value);
+      this.props.onDataChange(field, parseInt(event.target.value));
     }
   }
 
