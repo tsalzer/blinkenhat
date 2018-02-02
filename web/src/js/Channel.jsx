@@ -1,5 +1,9 @@
 import React, {Component} from 'react';
 
+import Button from 'material-ui/Button';
+import Divider from 'material-ui/Divider';
+import AddIcon from 'material-ui-icons/Add';
+
 import SimpleSlider from './SimpleSlider'
 
 import PaperContainer from './PaperContainer'
@@ -8,13 +12,72 @@ import Page from './Page';
 import {withStyles} from 'material-ui/styles';
 
 const styles = theme => ({
-  control: {
-    padding: theme.spacing.unit * 2,
+  fab: {
+    position: 'absolute',
+    bottom: theme.spacing.unit * 2,
+    right: theme.spacing.unit * 2,
   },
-  slider: {
-    height: 10
+  divider: {
+    marginTop: theme.spacing.unit * 2,
+    marginBottom: theme.spacing.unit * 2,
   }
 });
+
+
+function DotCfg(props) {
+  return (
+    <div>
+      <SimpleSlider id="count" label="Number of dots" min={1} max={5} step={1} value={props.cfg.count}
+                    onChange={props.updater("count")}
+                    valueFormat={val => val}/>
+      <SimpleSlider id="speed" label="Speed of dots" min={600} max={6000} step={200} value={props.cfg.speed}
+                    onChange={props.updater("speed")}
+                    valueFormat={val => val}/>
+      <SimpleSlider id="len" label="Length of tail" min={1} max={15} step={1} value={props.cfg.len}
+                    onChange={props.updater("len")}
+                    valueFormat={val => val}/>
+      <SimpleSlider id="hue" label="Start Hue value" min={0} max={255} step={10} value={props.cfg.hue}
+                    onChange={props.updater("hue")}
+                    valueFormat={val => val}/>
+      <SimpleSlider id="color_speed" label="Speed of color change" min={600} max={6000} step={200}
+                    value={props.cfg.color_speed}
+                    onChange={props.updater("color_speed")}
+                    valueFormat={val => val}/>
+      <SimpleSlider id="apply" label="Apply To" min={0} max={3} step={1} value={props.cfg.apply}
+                    onChange={props.updater("apply")}
+                    valueFormat={val => val}/>
+      <SimpleSlider id="coeff" label="Coeff" min={0} max={1} step={0.1} value={props.cfg.coeff}
+                    onChange={props.updater("coeff")}
+                    valueFormat={val => val}/>
+    </div>
+  )
+}
+
+function RainbowCfg(props) {
+  return (
+    <div>
+      <SimpleSlider id="speed" label="Speed" min={600} max={6000} step={200} value={props.cfg.speed}
+                    onChange={props.updater("speed")}
+                    valueFormat={val => val}/>
+      <SimpleSlider id="apply" label="Apply to" min={0} max={3} step={1} value={props.cfg.apply}
+                    onChange={props.updater("apply")}
+                    valueFormat={val => val}/>
+      <SimpleSlider id="coeff" label="Coeff" min={0.1} max={1} step={0.1} value={props.cfg.coeff}
+                    onChange={props.updater("coeff")}
+                    valueFormat={val => val}/>
+    </div>
+  )
+}
+
+function Effect(props) {
+  return (
+    <PaperContainer headline={"Effect: " + props.effect_data.typ}>
+      {props.effect_data.typ === 'rainbow' && <RainbowCfg updater={props.updater} cfg={props.effect_data.cfg}/>}
+      {props.effect_data.typ === 'dot' && <DotCfg updater={props.updater} cfg={props.effect_data.cfg}/>}
+      <Button>remove</Button>
+    </PaperContainer>
+  )
+}
 
 
 class Channel extends Component {
@@ -23,6 +86,15 @@ class Channel extends Component {
     return event => {
       this.props.dataMangle(d => {
         d[field] = parseFloat(event.target.value);
+      });
+    }
+  }
+
+  updateEffectData(id, field) {
+    return event => {
+      this.props.dataMangle(d => {
+        console.log(event.target.value);
+        d.effects[id][field] = parseFloat(event.target.value);
       });
     }
   }
@@ -41,6 +113,14 @@ class Channel extends Component {
                         onChange={this.changeData("gamma")}
                         valueFormat={val => val}/>
         </PaperContainer>
+        <Divider className={classes.divider}/>
+        <Button raised color='primary'>
+          <AddIcon/> Add Effect
+        </Button>
+
+        {channel_data.effects.map((fx, idx) => (
+          <Effect effect_data={fx} key={idx} updater={field => this.updateEffectData(idx, field)}/>
+        ))}
       </Page>
     );
   }
