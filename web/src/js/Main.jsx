@@ -17,6 +17,7 @@ import Head from './Head';
 import Navigation from './Navigation';
 import Upgrade from './Upgrade';
 import WiFi from './WiFi'
+import General from './General'
 
 
 const styles = {
@@ -102,6 +103,8 @@ class Main extends Component {
           <Navigation onViewChange={n => this.changeView(n)} hideDrawer={() => this.toggleDrawer(false)}
                       open={this.state.drawer}/>
           <Head showDrawer={() => this.toggleDrawer(true)} onSave={() => this.saveConfig()}/>
+          {view === 2 &&
+          <General cfg_data={this.state.global_data} onDataChange={(field, val) => this.setGlobalData(field, val)}/>}
           {view === 3 &&
           <WiFi cfg_data={this.state.global_data} onDataChange={(field, val) => this.setGlobalData(field, val)}/>}
           {view === 4 && <Upgrade/>}
