@@ -9,6 +9,10 @@ const styles = theme => ({
     flexGrow: 1,
     padding: 5
   },
+  headline: {
+    padding: theme.spacing.unit,
+    paddingTop: theme.spacing.unit * 2,
+  }
 });
 
 function Page(props) {
@@ -16,9 +20,11 @@ function Page(props) {
 
   return (
     <div className={classes.root}>
-      <Typography type="headline" gutterBottom>
-        {props.name}
-      </Typography>
+      <div className={classes.headline}>
+        <Typography type="headline" gutterBottom>
+          {props.name}
+        </Typography>
+      </div>
       {props.children}
     </div>
   );

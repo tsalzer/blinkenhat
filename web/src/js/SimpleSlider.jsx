@@ -17,25 +17,17 @@ const styles = theme => ({
 });
 
 
-class SimpleSlider extends Component {
-  constructor(props) {
-    super(props);
-  }
+function SimpleSlider(props) {
+  const {classes} = props;
 
-  render() {
-    const {classes} = this.props;
-    console.log(this.props);
-    console.log(classes.control);
-
-    return (
-      <FormControl className={classes.control} fullWidth>
-        <FormLabel htmlFor={this.props.id}>{this.props.label}</FormLabel>
-        <input id={this.props.id} type="range" min={this.props.min} max={this.props.max} step={this.props.step}
-               value={this.props.value} onChange={e => this.props.onChange(e)}/>
-        <FormHelperText id={this.props.id + "-helper-text"}>{this.props.valueFormat(this.props.value)}</FormHelperText>
-      </FormControl>
-    )
-  }
+  return (
+    <FormControl className={classes.control} fullWidth>
+      <FormLabel htmlFor={props.id}>{props.label}</FormLabel>
+      <input id={props.id} type="range" min={props.min} max={props.max} step={props.step}
+             value={props.value} onChange={e => props.onChange(e)}/>
+      <FormHelperText id={props.id + "-helper-text"}>{props.valueFormat(props.value)}</FormHelperText>
+    </FormControl>
+  )
 }
 
 SimpleSlider.defaultProps = {

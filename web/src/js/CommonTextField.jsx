@@ -8,6 +8,10 @@ const styles = theme => ({
   control: {
     padding: theme.spacing.unit * 2,
   },
+  label:{
+    paddingLeft: theme.spacing.unit * 2,
+    paddingRight: theme.spacing.unit * 2,
+  }
 });
 
 function CommonTextField(props) {
@@ -21,6 +25,7 @@ function CommonTextField(props) {
       value={props.cfg_data[props.id]}
       margin="normal"
       className={classes.control}
+      labelClassName={classes.label}
     />
   )
 }
