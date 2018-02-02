@@ -23,10 +23,11 @@ bool WifiHandler::connect() {
     WiFi.mode(WIFI_STA);
     WiFi.begin(sta_ssid.c_str(), sta_passwd.c_str());
 
-    for (int i = 0; i < 40; ++i) {
+    for (int i = 0; i <300; ++i) {
       if (WiFi.status() == WL_CONNECTED) {
-	Serial.println(WiFi.localIP());
-        return true;
+         Serial.printf("connected after %dms\n", i*50);
+	       Serial.println(WiFi.localIP());
+         return true;
       }
       delay(50);
     }
