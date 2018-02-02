@@ -18,6 +18,7 @@ import Navigation from './Navigation';
 import Upgrade from './Upgrade';
 import WiFi from './WiFi'
 import General from './General'
+import Channel from './Channel'
 
 
 const styles = {
@@ -43,10 +44,26 @@ class Main extends Component {
         sta_ssid: "",
         sta_passwd: "",
         ap_ssid: "",
-        ap_passwd: ""
+        ap_passwd: "",
+        ap_timeout: 0,
+        brightness: 0,
+        framerate: 0,
+        channels: {
+          A: {
+            gamma: 1,
+            leds: 72,
+            effects: []
+          },
+          B: {
+            gamma: 1,
+            leds: 72,
+            effects: []
+          }
+        }
       }
-    }
+    };
   }
+
 
   loadConfig() {
     axios.get(`/config`)
@@ -92,9 +109,16 @@ class Main extends Component {
     this.setState({global_data: Object.assign({}, this.state.global_data, update)})
   }
 
+  mangleChannelData(channel, mangler) {
+    const new_data = Object.assign({}, this.state.global_data);
+    mangler(new_data.channels[channel]);
+    this.setState({global_data: new_data});
+  }
+
   render() {
     const {classes} = this.props;
     const view = this.state.view;
+    const mangler = ch => fn =>  this.mangleChannelData(ch, fn);
 
     return (
       <div className={classes.root}>
@@ -103,10 +127,15 @@ class Main extends Component {
           <Navigation onViewChange={n => this.changeView(n)} hideDrawer={() => this.toggleDrawer(false)}
                       open={this.state.drawer}/>
           <Head showDrawer={() => this.toggleDrawer(true)} onSave={() => this.saveConfig()}/>
+
+          {view === 0 && <Channel cfg_data={this.state.global_data} channel="A" dataMangle={mangler("A")}/>}
+          {view === 1 && <Channel cfg_data={this.state.global_data} channel="B" dataMangle={mangler("B")}/>}
           {view === 2 &&
-          <General cfg_data={this.state.global_data} onDataChange={(field, val) => this.setGlobalData(field, val)}/>}
+          <General cfg_data={this.state.global_data}
+                   onDataChange={(field, val) => this.setGlobalData(field, val)}/>}
           {view === 3 &&
-          <WiFi cfg_data={this.state.global_data} onDataChange={(field, val) => this.setGlobalData(field, val)}/>}
+          <WiFi cfg_data={this.state.global_data}
+                onDataChange={(field, val) => this.setGlobalData(field, val)}/>}
           {view === 4 && <Upgrade/>}
           <Snackbar
             open={this.state.show_message}
