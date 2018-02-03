@@ -32,9 +32,9 @@ void setup() {
 
 void loop() {
   unsigned long loop_time = millis();
-  if (!wifihandler.isConnected()) {
+  //if (!wifihandler.isConnected()) {
     device.loop(loop_time);
-  }
+  //}
   wifihandler.loop();
   web.loop();
 }
