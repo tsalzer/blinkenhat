@@ -35,7 +35,7 @@ bool WifiHandler::connect() {
   }
 
   if (ap_ssid.length() > 0 && ap_passwd.length() > 0) {
-    WiFi.mode(WIFI_AP_STA);
+    WiFi.mode(WIFI_AP);
 
     WiFi.softAP((ap_ssid + String(ESP.getChipId(), HEX)).c_str(),
 		ap_passwd.c_str());
