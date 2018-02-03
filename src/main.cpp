@@ -28,6 +28,7 @@ void setup() {
   web.configure(cfg);
 
   cfg.onReconf([&](const HatConfig& new_cfg){ device.configure(new_cfg); });
+  Serial.println(ESP.getChipId(), HEX);
 }
 
 void loop() {
