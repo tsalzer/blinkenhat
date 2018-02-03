@@ -3,6 +3,9 @@ import React, {Component} from 'react';
 import Button from 'material-ui/Button';
 import Divider from 'material-ui/Divider';
 import AddIcon from 'material-ui-icons/Add';
+import Popover from 'material-ui/Popover';
+import Menu, {MenuItem} from 'material-ui/Menu';
+
 
 import SimpleSlider from './SimpleSlider'
 
@@ -79,6 +82,49 @@ function Effect(props) {
   )
 }
 
+class AddMenu extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      anchorEl: null,
+    };
+  }
+
+  handleClick(event) {
+    this.setState({anchorEl: event.currentTarget});
+  };
+
+  handleClose() {
+    this.setState({anchorEl: null});
+  };
+
+  render() {
+    const {anchorEl} = this.state;
+
+    return (
+      <div>
+        <Button raised
+                aria-owns={anchorEl ? 'simple-menu' : null}
+                aria-haspopup="true"
+                onClick={e => this.handleClick(e)}
+                color="primary"
+        >
+          <AddIcon/> Add Effect
+        </Button>
+        <Menu
+          id="simple-menu"
+          anchorEl={anchorEl}
+          open={Boolean(anchorEl)}
+          onClose={() => this.handleClose()}
+        >
+          <MenuItem onClick={() => this.handleClose()}>Dot</MenuItem>
+          <MenuItem onClick={() => this.handleClose()}>Rainbow</MenuItem>
+        </Menu>
+      </div>
+    );
+  }
+}
+
 
 class Channel extends Component {
 
@@ -113,12 +159,10 @@ class Channel extends Component {
                         valueFormat={val => val}/>
         </PaperContainer>
         <Divider className={classes.divider}/>
-        <Button raised color='primary'>
-          <AddIcon/> Add Effect
-        </Button>
+        <AddMenu/>
 
         {channel_data.effects.map((fx, idx) => (
-          <Effect effect_data={fx} key={idx} updater={field => this.updateEffectData(idx, field)}/>
+          <Effect effect_data={fx} key={fx.idx} updater={field => this.updateEffectData(idx, field)}/>
         ))}
       </Page>
     );
