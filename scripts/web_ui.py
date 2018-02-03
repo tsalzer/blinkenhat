@@ -16,7 +16,7 @@ const unsigned long index_html_len = %(len)d;
 const char PROGMEM index_html[] = {%(index)s};
 """
 
-def build()
+def build():
     if not os.path.exists(INPUT):
         print("No input file!")
         return
