@@ -13,6 +13,7 @@
       "effects": [
         {
           "typ": "rainbow",
+	  "idx": 0,
           "cfg": {
             "speed": 5000,
             "apply": 1,
@@ -21,6 +22,7 @@
         },
         {
           "typ": "dot",
+	  "idx": 1,
           "cfg": {
             "count": 3,
             "speed": 6000,
