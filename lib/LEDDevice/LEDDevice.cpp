@@ -13,7 +13,7 @@ void LEDDevice::setup() {
       .setCorrection(TypicalLEDStrip);
 
   // We do not use dithering for now.
-  FastLED.setDither(1);
+  FastLED.setDither(0);
 }
 
 LEDDevice::LEDDevice() : brightness(50), frame_time(1000/30), last_update(0), bands({nullptr, nullptr}) {}
@@ -64,9 +64,9 @@ void LEDDevice::loop(unsigned long time) {
     });
 
     last_update = millis();
-    return;
-  }
 
-  FastLED.show();
-  delayMicroseconds(50);
+    yield();
+    FastLED.show();
+    delayMicroseconds(50);
+  }
 }
