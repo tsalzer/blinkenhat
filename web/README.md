@@ -20,7 +20,9 @@ You need to start both for full testing:
 $ npm start
 
 # start the json-server:
-$ ./node_modules/.bin/json-server --watch dummy.json
+$ npm json-server
+# which actually calls:
+# $ ./node_modules/.bin/json-server --watch dummy.json
 ```
 
 The dev version of the frontend is then available at http://localhost:8080.
