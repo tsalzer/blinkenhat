@@ -1,0 +1,13 @@
+digraph hierarchy {
+                rankdir="LR"
+                ranksep=0.8 // increases the separation between nodes
+                
+                node [color=Red,fontname=Courier,shape=box] //All nodes will this shape and colour
+                edge [color=Blue, style=dashed] //All the lines look like this
+
+                "PCB" -> "LED 1" [headlabel=<D<SUB>in</SUB> >, fontsize=10, fontcolor="#555555"]
+                "LED 1"->"LED 2" [taillabel=< D<SUB>out</SUB>>, headlabel=<D<SUB>in</SUB> >, fontsize=10, fontcolor="#555555"]
+                "LED 2"->"LED 3" [taillabel=< D<SUB>out</SUB>>, headlabel=<D<SUB>in</SUB> >, fontsize=10, fontcolor="#555555"]
+                "LED 3"->"..." [taillabel=< D<SUB>out</SUB>>, headlabel=<D<SUB>in</SUB> >, fontsize=10, fontcolor="#555555"]
+}
+

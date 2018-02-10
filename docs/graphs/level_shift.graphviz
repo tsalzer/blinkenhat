@@ -1,0 +1,12 @@
+digraph hierarchy {
+                rankdir="LR"
+                ranksep=0.6 // increases the separation between nodes
+                
+                node [color=Red,fontname=Courier,shape=box] //All nodes will this shape and colour
+                edge [color=Blue, style=dashed] //All the lines look like this
+
+                "Controller" -> "Level Shifter" [label="3.3V", fontsize=10, fontcolor="#555555"]
+                "Level Shifter"->"LED 1" [label="5V", fontsize=10, fontcolor="#555555"]
+               
+}
+
