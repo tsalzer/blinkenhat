@@ -2,6 +2,14 @@
 #include "WebServer.h"
 #include "index.h"
 
+#ifndef FW_VERSION
+#define FW_VERSION unknown
+#endif
+
+#define X_QUOTE(x) #x
+#define QUOTE(x) X_QUOTE(x)
+
+
 const char PROGMEM TEXT_PLAIN[] = "text/plain";
 const char PROGMEM APPLICATION_JSON[] = "application/json";
 
@@ -25,7 +33,7 @@ void WebServer::configure(HatConfig &config) {
    * GET /firmware
    */
   web.on(F("/firmware"), HTTP_GET, [this]() {
-    web.send(200, FPSTR(APPLICATION_JSON), F("{\"version\": \"none\"}"));
+    web.send(200, FPSTR(APPLICATION_JSON), F("{\"version\": \"" QUOTE(FW_VERSION) "\"}"));
   });
 
   /*
