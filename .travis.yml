@@ -1,8 +1,7 @@
 language: python
 python:
-  - "2.7"
+  - '2.7'
 
-# Cache PlatformIO packages using Travis CI container-based infrastructure
 sudo: false
 cache:
   directories:
@@ -11,13 +10,10 @@ cache:
 
 env:
   - PLATFORMIO_ENV=esp12e
-
 install:
-  # PlatformIO
   - pip install -U https://github.com/platformio/platformio-core/archive/develop.zip
   - platformio update
   - platformio lib install
-  # install node
   - nvm install node
   - cd web && npm install && cd ..
 
@@ -25,3 +21,11 @@ script:
   - cd web && NODE_ENV=production npm run build && cd ..
   - platformio run --environment=$PLATFORMIO_ENV
 
+deploy:
+  provider: releases
+  api_key:
+    secure: DynqQgyaUZaNfUuuvt7+O14qZyhMBLg7ElCNoh6Mh2NSwyEo+rutmAlN+tVL1/40H5KstumYSq5fmld+eNSxFVLau9QhVu5Hnf/Ef0BL+32468CKrrkp4KpSZzoUe1NZp1S8lmmg1fz/oH58BVz2jsbLP0JxGKSM7o3Nb62kyRGL9wOREa+fgKHS58k1Hsc695UTHAnvZQMnFil4zHANNtc3UBAq7yJKkWDaE2M83ya7f/Ji+mrV1li+Eh0MAhT+cs9awmia8n2LX7IaFr6KqEvZK5hLq/CajVCBGwoENVQpZQEWYuK+Bu+c8UUjdq9yyPdF7lv+eyJbZ/HHlzt0y7LLOkThRzELgoCvIPDcg5VbYJZTVFvZb+47cYs+Z3fryv5NCz0JXL720Tiv6oK7FuD45vXJ39RTHo4JViJp7FsFW7mzwco1yA5HvfwVfqXLivHPcDzkl4TTVeOWnk6uVIWVadCRJC8U4INZT+q9eBGdohgzrltZevIXLQI+JcsyuMxB7syv+8N0Y5xBDTm9fQcAap5qbZPjd94Q2PHcBhUznWTohRBYBT/FqhJbWeIfrE5a2Wd9/UGUCHBm48/RDU8lGQ03+id6sAAk5Ojhz6tXaLkM1Wb34tl0dgV3Yy6OGisbz15APbJvGaPwxfHWU+C9LTCfZ6zWhCgvQX5H9xA=
+  file: ".pioenvs/esp12e/firmware.bin"
+  on:
+    repo: Retardigrades/blinkenhat
+    tags: true
