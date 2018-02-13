@@ -9,7 +9,7 @@ The main parts are:
 2. The Software running on the microcontroller
 3. A control-UI where the user can change the behaviour of the device.
 
-The whole prokect is open source and completely available on [Github](https://github.com/Retardigrades/blinkenhat).
+The whole project is open source and completely available on [Github](https://github.com/Retardigrades/blinkenhat).
 
 ## User documentation
 
