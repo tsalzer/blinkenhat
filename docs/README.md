@@ -1,3 +1,32 @@
 # Blinkenhat
 
+## Introduction
+
+The blinkenhat is a little project to enable interrested people with little or less experience in electronics or programming into this field.
+It was founded to hold a workshop where peopl can build a blinking hat.
+The main parts are:
+1. A little PCB with a microcontroller
+2. The Software running on the microcontroller
+3. A control-UI where the user can change the behaviour of the device.
+
+The whole prokect is open source and completely available on [Github](https://github.com/Retardigrades/blinkenhat).
+
+## User documentation
+
+To be filled ...
+
+## Project documentation
+
+In this section we provide all the so-far available documentation of the device itself.
+
 1. [Hardware](hardware)
+2. Software
+3. User Interface
+
+## Build your own BlinkenHat
+
+To be filled ...
+
+## Run your own workshop
+
+To be filled ...
