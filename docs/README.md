@@ -25,7 +25,10 @@ In this section we provide all the so-far available documentation of the device 
 
 ## Build your own BlinkenHat
 
-To be filled ...
+You did not attend one of the workshops but wnat to build your own LED cloth using a BlinkenHat device?
+No Problem -- you can build your own!
+
+Everything you need to know can be found on the [Build your own](build) page.
 
 ## Run your own workshop
 
